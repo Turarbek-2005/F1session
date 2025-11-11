@@ -1,0 +1,220 @@
+{"level":"info","message":"Server is running on port 4200","timestamp":"2025-11-11T14:24:49.810Z"}
+{"level":"info","message":"Server is running on port 4200","timestamp":"2025-11-11T14:39:02.082Z"}
+{"level":"info","message":"Server is running on port 4200","timestamp":"2025-11-11T14:39:29.932Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-11T14:41:36.239Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-11T14:41:36.241Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-11T14:41:36.363Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-11T14:41:36.364Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-11T14:42:57.645Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-11T14:42:57.648Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-11T14:42:57.664Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-11T14:42:57.665Z"}
+{"level":"info","message":"Server is running on port 4200","timestamp":"2025-11-11T14:44:03.954Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-11T14:44:06.886Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-11T14:44:06.894Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-11T14:44:07.131Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-11T14:44:07.133Z"}
+{"level":"info","message":"Server is running on port 4200","timestamp":"2025-11-11T14:52:18.724Z"}
+{"level":"info","message":"Shutting down...","timestamp":"2025-11-11T14:53:59.896Z"}
+{"level":"info","message":"Server is running on port 4200","timestamp":"2025-11-11T14:54:02.423Z"}
+{"level":"info","message":"Server is running on port 4200","timestamp":"2025-11-11T14:55:23.391Z"}
+{"level":"info","message":"Server is running on port 4200","timestamp":"2025-11-11T15:23:05.623Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-11T15:33:11.424Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-11T15:33:11.426Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-11T15:33:11.484Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-11T15:33:11.484Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-11T15:33:33.937Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-11T15:33:33.938Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-11T15:33:33.943Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-11T15:33:33.944Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-11T15:33:39.641Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-11T15:33:39.642Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-11T15:33:39.650Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-11T15:33:39.652Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-11T15:34:16.267Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-11T15:34:16.270Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-11T15:34:16.290Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-11T15:34:16.296Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-11T15:34:48.044Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-11T15:34:48.044Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-11T15:34:48.057Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-11T15:34:48.057Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-11T15:35:13.569Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-11T15:35:13.572Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-11T15:35:13.579Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-11T15:35:13.581Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-11T15:35:17.680Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-11T15:35:17.680Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-11T15:35:17.682Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-11T15:35:17.682Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-11T15:35:24.438Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-11T15:35:24.446Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-11T15:35:24.455Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-11T15:35:24.458Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-11T15:35:31.943Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-11T15:35:31.943Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-11T15:35:31.945Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-11T15:35:31.945Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-11T15:35:48.920Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-11T15:35:48.921Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-11T15:35:48.923Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-11T15:35:48.923Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-11T15:35:51.719Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-11T15:35:51.721Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-11T15:35:51.725Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-11T15:35:51.725Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-11T15:35:56.950Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-11T15:35:56.950Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-11T15:35:56.951Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-11T15:35:56.952Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-11T15:40:22.333Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-11T15:40:22.333Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-11T15:40:22.335Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-11T15:40:22.336Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-11T15:40:24.371Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-11T15:40:24.372Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-11T15:40:24.373Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-11T15:40:24.373Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-11T15:42:04.631Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-11T15:42:04.642Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-11T15:42:04.648Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-11T15:42:04.648Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-11T15:42:27.948Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-11T15:42:27.950Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-11T15:42:27.953Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-11T15:42:27.953Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-11T15:42:41.856Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-11T15:42:41.856Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-11T15:42:41.861Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-11T15:42:41.863Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-11T15:44:43.548Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-11T15:44:43.549Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-11T15:44:43.552Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-11T15:44:43.553Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-11T15:44:46.728Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-11T15:44:46.729Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-11T15:44:46.738Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-11T15:44:46.738Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-11T15:45:25.026Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-11T15:45:25.026Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-11T15:45:25.029Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-11T15:45:25.031Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-11T15:46:36.127Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-11T15:46:36.130Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-11T15:46:36.138Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-11T15:46:36.141Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-11T15:46:47.061Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-11T15:46:47.062Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-11T15:46:47.069Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-11T15:46:47.070Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-11T15:46:54.755Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-11T15:46:54.815Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-11T15:46:54.817Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-11T15:46:54.818Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-11T15:47:23.517Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-11T15:47:23.519Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-11T15:47:23.523Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-11T15:47:23.585Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-11T15:47:24.405Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-11T15:47:24.420Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-11T15:47:24.431Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-11T15:47:24.435Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-11T15:47:40.349Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-11T15:47:40.379Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-11T15:47:40.381Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-11T15:47:40.385Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-11T15:47:40.457Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-11T15:47:40.457Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-11T15:47:40.462Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-11T15:47:40.463Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-11T15:47:47.310Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-11T15:47:47.311Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-11T15:47:47.322Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-11T15:47:47.323Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-11T15:47:47.423Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-11T15:47:47.424Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-11T15:47:47.428Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-11T15:47:47.428Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-11T15:47:53.869Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-11T15:47:53.869Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-11T15:47:53.884Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-11T15:47:53.884Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-11T15:48:05.281Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-11T15:48:05.281Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-11T15:48:05.286Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-11T15:48:05.286Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-11T15:48:05.383Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-11T15:48:05.383Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-11T15:48:05.386Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-11T15:48:05.386Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-11T15:48:09.619Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-11T15:48:09.620Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-11T15:48:09.625Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-11T15:48:09.627Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-11T15:48:10.350Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-11T15:48:10.351Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-11T15:48:10.357Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-11T15:48:10.357Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-11T15:48:12.408Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-11T15:48:12.410Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-11T15:48:12.415Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-11T15:48:12.420Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-11T15:48:13.349Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-11T15:48:13.349Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-11T15:48:13.352Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-11T15:48:13.352Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-11T15:48:17.054Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-11T15:48:17.054Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-11T15:48:17.056Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-11T15:48:17.057Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-11T15:48:19.614Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-11T15:48:19.614Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-11T15:48:19.618Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-11T15:48:19.619Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-11T15:48:26.335Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-11T15:48:26.335Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-11T15:48:26.337Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-11T15:48:26.337Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-11T15:48:27.372Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-11T15:48:27.372Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-11T15:48:27.378Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-11T15:48:27.378Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-11T15:48:30.964Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-11T15:48:30.965Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-11T15:48:30.969Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-11T15:48:30.970Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-11T15:48:31.397Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-11T15:48:31.397Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-11T15:48:31.399Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-11T15:48:31.400Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-11T15:48:34.770Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-11T15:48:34.771Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-11T15:48:34.772Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-11T15:48:34.773Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-11T15:48:35.347Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-11T15:48:35.347Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-11T15:48:35.351Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-11T15:48:35.351Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-11T15:48:37.649Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-11T15:48:37.650Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-11T15:48:37.652Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-11T15:48:37.654Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-11T15:48:38.390Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-11T15:48:38.390Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-11T15:48:38.394Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-11T15:48:38.395Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-11T15:48:58.019Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-11T15:48:58.020Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-11T15:48:58.023Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-11T15:48:58.024Z"}
+{"level":"info","message":"Shutting down...","timestamp":"2025-11-11T15:52:36.738Z"}
+{"level":"info","message":"Server is running on port 4200","timestamp":"2025-11-11T16:13:54.830Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-11T16:14:25.746Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-11T16:14:25.747Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-11T16:14:25.803Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-11T16:14:25.804Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-11T16:14:31.162Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-11T16:14:31.163Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-11T16:14:31.170Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-11T16:14:31.170Z"}
+{"level":"info","message":"Shutting down...","timestamp":"2025-11-11T16:14:43.858Z"}
