@@ -218,3 +218,31 @@
 {"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-11T16:14:31.170Z"}
 {"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-11T16:14:31.170Z"}
 {"level":"info","message":"Shutting down...","timestamp":"2025-11-11T16:14:43.858Z"}
+{"level":"info","message":"Server is running on port 4200","timestamp":"2025-11-12T06:33:24.912Z"}
+{"level":"info","message":"Server is running on port 4200","timestamp":"2025-11-12T06:33:29.167Z"}
+{"level":"info","message":"Shutting down...","timestamp":"2025-11-12T06:36:06.188Z"}
+{"level":"info","message":"Server is running on port 4200","timestamp":"2025-11-12T06:36:08.544Z"}
+{"level":"info","message":"Shutting down...","timestamp":"2025-11-12T06:36:14.838Z"}
+{"level":"info","message":"Server is running on port 4200","timestamp":"2025-11-12T06:36:19.521Z"}
+{"level":"info","message":"Shutting down...","timestamp":"2025-11-12T06:38:29.656Z"}
+{"level":"info","message":"Server is running on port 4200","timestamp":"2025-11-12T06:38:32.415Z"}
+{"level":"info","message":"Server is running on port 4200","timestamp":"2025-11-12T06:40:59.184Z"}
+{"level":"info","message":"Shutting down...","timestamp":"2025-11-12T06:41:46.906Z"}
+{"level":"info","message":"Server is running on port 4200","timestamp":"2025-11-12T06:41:49.132Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-12T06:45:43.620Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-12T06:45:43.621Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-12T06:45:43.674Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-12T06:45:43.675Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-12T06:47:59.522Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-12T06:47:59.523Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-12T06:47:59.532Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-12T06:47:59.532Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-12T06:48:05.806Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-12T06:48:05.807Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-12T06:48:05.812Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-12T06:48:05.812Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-11-12T06:48:11.767Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-11-12T06:48:11.767Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-11-12T06:48:11.772Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-11-12T06:48:11.774Z"}
+{"level":"info","message":"Shutting down...","timestamp":"2025-11-12T06:48:22.696Z"}

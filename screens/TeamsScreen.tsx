@@ -143,18 +143,19 @@ const TeamsScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#0d0d0d",
+    paddingTop: 10,
   },
   centerContainer: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#fff",
+    backgroundColor: "#0d0d0d",
   },
   loadingText: {
     marginTop: 10,
     fontSize: 16,
-    color: "#333",
+    color: "#ccc",
   },
   errorText: {
     fontSize: 18,
@@ -164,17 +165,22 @@ const styles = StyleSheet.create({
   },
   errorSubtext: {
     fontSize: 14,
-    color: "#666",
+    color: "#888",
   },
   listContent: {
-    padding: 16,
+    paddingHorizontal: 12,
+    paddingBottom: 40,
   },
   card: {
-    backgroundColor: "#f5f5f5",
-    borderRadius: 12,
+    backgroundColor: "#1a1a1a",
+    borderRadius: 16,
     marginBottom: 16,
-    padding: 16,
-    overflow: "hidden",
+    padding: 14,
+    shadowColor: "#e10600",
+    shadowOpacity: 0.2,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 4 },
+    elevation: 5,
   },
   cardHeader: {
     flexDirection: "row",
@@ -185,26 +191,27 @@ const styles = StyleSheet.create({
   teamName: {
     fontSize: 18,
     fontWeight: "700",
-    color: "#000",
+    color: "#fff",
     textTransform: "uppercase",
   },
   teamLogoWrapper: {
     width: 40,
     height: 40,
-    borderRadius: 25, // делаем круг
-    backgroundColor: "#666", // можно любой цвет или динамически под команду
+    borderRadius: 20,
+    backgroundColor: "#333",
     justifyContent: "center",
     alignItems: "center",
   },
   teamLogo: {
     width: 30,
     height: 30,
-    borderRadius: 15, // чтобы иконка тоже была слегка округлой
+    borderRadius: 15,
   },
   carImage: {
     width: "100%",
     height: 120,
     marginBottom: 12,
+    borderRadius: 10,
   },
   driversContainer: {
     marginTop: 8,
@@ -212,7 +219,7 @@ const styles = StyleSheet.create({
   driversLabel: {
     fontSize: 14,
     fontWeight: "600",
-    color: "#666",
+    color: "#ccc",
     marginBottom: 8,
   },
   driverRow: {
@@ -230,16 +237,15 @@ const styles = StyleSheet.create({
   },
   driverThumbImage: {
     width: "100%",
-    height: "250%", // показываем только верхнюю часть (~40%)
+    height: "250%",
     position: "absolute",
-    top: 0, // верхняя часть видна
+    top: 0,
     resizeMode: "cover",
   },
-
   driverName: {
     fontSize: 14,
     fontWeight: "600",
-    color: "#000",
+    color: "#fff",
     textTransform: "uppercase",
   },
 });

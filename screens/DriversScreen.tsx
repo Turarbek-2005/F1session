@@ -69,6 +69,7 @@ const DriversScreen = () => {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.header}>F1 DRIVERS</Text>
       <FlatList
         data={sortedDrivers}
         keyExtractor={(item) => item.id.toString()}
@@ -87,23 +88,11 @@ const DriversScreen = () => {
             <View style={styles.card}>
               <View style={styles.cardHeader}>
                 <View style={styles.driverNameWrapper}>
-                  {matchedDriver ? (
-                    <Text
-                      style={styles.driverId}
-                      numberOfLines={1}
-                      ellipsizeMode="tail"
-                    >
-                      {matchedDriver.name} {matchedDriver.surname}
-                    </Text>
-                  ) : (
-                    <Text
-                      style={styles.driverId}
-                      numberOfLines={1}
-                      ellipsizeMode="tail"
-                    >
-                      {item.driverId}
-                    </Text>
-                  )}
+                  <Text style={styles.driverId}>
+                    {matchedDriver
+                      ? `${matchedDriver.name} ${matchedDriver.surname}`
+                      : item.driverId}
+                  </Text>
                   {matchedDriver?.number && (
                     <Text style={styles.driverNumber}>
                       {matchedDriver.number}
@@ -116,14 +105,7 @@ const DriversScreen = () => {
                 />
               </View>
 
-              {item.imgUrl && (
-                <View style={styles.driverImageWrapper}>
-                  <Image
-                    source={{ uri: item.imgUrl }}
-                    style={styles.driverImage}
-                  />
-                </View>
-              )}
+              {item.imgUrl && (<View style={styles.driverImageWrapper}> <Image source={{ uri: item.imgUrl }} style={styles.driverImage} /> </View>)}
 
               <View style={styles.cardFooter}>
                 <Text style={styles.teamId}>
@@ -141,18 +123,29 @@ const DriversScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#0d0d0d", // тёмный фон
+    paddingTop: 50,
+  },
+  header: {
+    color: "#fff",
+    fontSize: 28,
+    fontWeight: "900",
+    textAlign: "center",
+    letterSpacing: 3,
+    marginBottom: 10,
+    textShadowColor: "#e10600",
+    textShadowRadius: 12,
   },
   centerContainer: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#fff",
+    backgroundColor: "#0d0d0d",
   },
   loadingText: {
     marginTop: 10,
     fontSize: 16,
-    color: "#333",
+    color: "#ccc",
   },
   errorText: {
     fontSize: 18,
@@ -162,74 +155,69 @@ const styles = StyleSheet.create({
   },
   errorSubtext: {
     fontSize: 14,
-    color: "#666",
+    color: "#888",
   },
   listContent: {
-    padding: 10,
+    paddingHorizontal: 10,
+    paddingBottom: 40,
   },
   row: {
     justifyContent: "space-between",
   },
   card: {
     flex: 1,
-    backgroundColor: "#f5f5f5",
-    borderRadius: 12,
-    margin: 5,
-    padding: 12,
+    backgroundColor: "#1a1a1a",
+    borderRadius: 16,
+    margin: 6,
+    padding: 14,
     maxWidth: "48%",
-    minHeight: 200,
-    position: "relative", // для абсолютного позиционирования внутри
+    minHeight: 220,
+    shadowColor: "#e10600",
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 4 },
+    elevation: 5,
   },
   cardHeader: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: 10,
+    marginBottom: 8,
   },
   driverNameWrapper: {
-    flexShrink: 1, // позволяет тексту сжиматься, не выталкивая флаг
-    marginRight: 8, // отступ между текстом и флагом
+    flexShrink: 1,
   },
   driverId: {
     fontSize: 14,
     fontWeight: "700",
-    color: "#000",
+    color: "#fff",
     textTransform: "uppercase",
   },
   driverNumber: {
-    fontSize: 24,
-    fontWeight: "600",
-    color: "#000",
-    marginTop: 4,
+    fontSize: 20,
+    fontWeight: "700",
+    color: "#e10600",
+    marginTop: 2,
   },
   flagIcon: {
-    width: 24,
-    height: 24,
-    borderRadius: 12,
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    borderWidth: 1,
+    borderColor: "#e10600",
   },
-  driverImageWrapper: {
-    width: 120,
-    height: 160, // высота блока, который будет видим
-    overflow: "hidden",
-    borderRadius: 8,
-    position: "relative",
-    marginBottom: 8,
-  },
-  driverImage: {
-    width: "100%",
-    height: "250%", // увеличиваем, чтобы отображалась только верхняя часть (~40%)
-    position: "absolute",
-    top: 0, // верхняя часть картинки
-    resizeMode: "cover", // object-cover аналог
-  },
-
+  driverImageWrapper: { width: 140, height: 180, overflow: "hidden", borderRadius: 8, position: "relative", marginBottom: 8, }, driverImage: { width: "100%", height: "250%", position: "absolute", top: 0, resizeMode: "cover", },
   cardFooter: {
-    marginTop: "auto",
+    borderTopWidth: 1,
+    borderTopColor: "#2a2a2a",
+    paddingTop: 8,
   },
   teamId: {
-    fontSize: 12,
-    color: "#666",
+    fontSize: 13,
+    color: "#ccc",
+    textAlign: "center",
     fontWeight: "500",
+    letterSpacing: 0.5,
   },
 });
 

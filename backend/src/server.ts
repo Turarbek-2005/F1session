@@ -44,9 +44,6 @@ const server = app.listen(PORT, () => {
   logger.info(`Server is running on port ${PORT}`);
 });
 
-app.listen(4200, "0.0.0.0", () => {
-  console.log("Server listening on 0.0.0.0:4200");
-});
 
 process.on("SIGINT", async () => {
   logger.info("Shutting down...");
