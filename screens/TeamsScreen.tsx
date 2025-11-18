@@ -82,8 +82,9 @@ const TeamsScreen = () => {
             <View style={styles.card}>
               <View style={styles.cardHeader}>
                 <Text style={styles.teamName}>
-                  {matchedTeam?.teamName ?? item.teamId}
+                  {String(matchedTeam?.teamName ?? item.teamId)}
                 </Text>
+
 
                 {item.teamImgUrl && (
                   <View style={styles.teamLogoWrapper}>
@@ -125,7 +126,7 @@ const TeamsScreen = () => {
                         <Text style={styles.driverName}>
                           {matchedDriverApi
                             ? `${matchedDriverApi.name} ${matchedDriverApi.surname}`
-                            : driver.driverId}
+                            : String(driver.driverId)}
                         </Text>
                       </View>
                     );

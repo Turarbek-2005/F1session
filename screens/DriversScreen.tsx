@@ -17,7 +17,7 @@ import { f1ApiService } from "./f1ApiService";
 
 const DriversScreen = () => {
   const dispatch = useAppDispatch();
-  const drivers = useAppSelector(selectAllDrivers);
+  const drivers = useAppSelector(selectAllDrivers) || [];
   const status = useAppSelector(selectDriversStatus);
 
   const [driversApi, setDriversApi] = useState<any>({ drivers: [] });
@@ -33,8 +33,8 @@ const DriversScreen = () => {
           f1ApiService.getDrivers(),
           f1ApiService.getTeams(),
         ]);
-        setDriversApi(driversData);
-        setTeamsApi(teamsData);
+        setDriversApi(driversData ?? { drivers: [] });
+        setTeamsApi(teamsData ?? { teams: [] });
       } catch (error) {
         console.error("Failed to fetch F1 API data:", error);
       } finally {
@@ -65,51 +65,72 @@ const DriversScreen = () => {
     );
   }
 
-  const sortedDrivers = [...drivers].sort((a, b) => a.id - b.id);
+  const sortedDrivers = Array.isArray(drivers) ? [...drivers].sort((a, b) => (a?.id ?? 0) - (b?.id ?? 0)) : [];
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>F1 DRIVERS</Text>
+      <Text style={styles.header}>{String("F1 DRIVERS")}</Text>
+
       <FlatList
         data={sortedDrivers}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item, index) => String(item?.id ?? index)}
         numColumns={2}
         columnWrapperStyle={styles.row}
         contentContainerStyle={styles.listContent}
         renderItem={({ item }) => {
           const matchedDriver = driversApi?.drivers?.find(
-            (driverApi: any) => driverApi.driverId === item.driverId
+            (driverApi: any) => driverApi?.driverId === item?.driverId
           );
           const matchedTeam = teamsApi?.teams?.find(
-            (teamApi: any) => teamApi.teamId === item.teamId
+            (teamApi: any) => teamApi?.teamId === item?.teamId
           );
+
+          // безопасные строки:
+          const displayDriverId = matchedDriver
+            ? `${String(matchedDriver.name ?? "")} ${String(matchedDriver.surname ?? "")}`.trim()
+            : String(item?.driverId ?? "");
+
+          const displayDriverNumber =
+            matchedDriver?.number !== undefined && matchedDriver?.number !== null
+              ? String(matchedDriver.number)
+              : null;
+
+          const nationalityUri = item?.nationalityImgUrl;
+          const driverImgUri = item?.imgUrl;
+          const teamDisplay = matchedTeam?.teamName
+            ? String(matchedTeam.teamName)
+            : String(item?.teamId ?? "");
 
           return (
             <View style={styles.card}>
               <View style={styles.cardHeader}>
                 <View style={styles.driverNameWrapper}>
-                  <Text style={styles.driverId}>
-                    {matchedDriver
-                      ? `${matchedDriver.name} ${matchedDriver.surname}`
-                      : item.driverId}
+                  <Text style={styles.driverId} numberOfLines={1} ellipsizeMode="tail">
+                    {displayDriverId}
                   </Text>
-                  {matchedDriver?.number && (
-                    <Text style={styles.driverNumber}>
-                      {matchedDriver.number}
-                    </Text>
+
+                  {displayDriverNumber && (
+                    <Text style={styles.driverNumber}>{`#${displayDriverNumber}`}</Text>
                   )}
                 </View>
-                <Image
-                  source={{ uri: item.nationalityImgUrl }}
-                  style={styles.flagIcon}
-                />
+
+                {nationalityUri ? (
+                  <Image source={{ uri: nationalityUri }} style={styles.flagIcon} />
+                ) : (
+                  // если нет флага — выводим пустой аватар (не строку!)
+                  <View style={styles.flagPlaceholder} />
+                )}
               </View>
 
-              {item.imgUrl && (<View style={styles.driverImageWrapper}> <Image source={{ uri: item.imgUrl }} style={styles.driverImage} /> </View>)}
+              {driverImgUri ? (
+                <View style={styles.driverImageWrapper}>
+                  <Image source={{ uri: driverImgUri }} style={styles.driverImage} />
+                </View>
+              ) : null}
 
               <View style={styles.cardFooter}>
-                <Text style={styles.teamId}>
-                  {matchedTeam?.teamName ?? item.teamId}
+                <Text style={styles.teamId} numberOfLines={1}>
+                  {teamDisplay}
                 </Text>
               </View>
             </View>
@@ -123,7 +144,7 @@ const DriversScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#0d0d0d", // тёмный фон
+    backgroundColor: "#0d0d0d",
     paddingTop: 50,
   },
   header: {
@@ -206,7 +227,29 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#e10600",
   },
-  driverImageWrapper: { width: 140, height: 180, overflow: "hidden", borderRadius: 8, position: "relative", marginBottom: 8, }, driverImage: { width: "100%", height: "250%", position: "absolute", top: 0, resizeMode: "cover", },
+  flagPlaceholder: {
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    backgroundColor: "#222",
+    borderWidth: 1,
+    borderColor: "#333",
+  },
+  driverImageWrapper: {
+    width: 140,
+    height: 180,
+    overflow: "hidden",
+    borderRadius: 8,
+    position: "relative",
+    marginBottom: 8,
+  },
+  driverImage: {
+    width: "100%",
+    height: "250%",
+    position: "absolute",
+    top: 0,
+    resizeMode: "cover",
+  },
   cardFooter: {
     borderTopWidth: 1,
     borderTopColor: "#2a2a2a",
