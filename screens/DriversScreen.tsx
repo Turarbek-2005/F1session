@@ -6,6 +6,7 @@ import {
   FlatList,
   ActivityIndicator,
   Image,
+  TouchableOpacity,
 } from "react-native";
 import { useAppDispatch, useAppSelector } from "./hooks";
 import {
@@ -15,7 +16,7 @@ import {
 } from "./driversSlice";
 import { f1ApiService } from "./f1ApiService";
 
-const DriversScreen = () => {
+const DriversScreen = ({ navigation }: any) => {
   const dispatch = useAppDispatch();
   const drivers = useAppSelector(selectAllDrivers) || [];
   const status = useAppSelector(selectDriversStatus);
@@ -102,7 +103,10 @@ const DriversScreen = () => {
             : String(item?.teamId ?? "");
 
           return (
-            <View style={styles.card}>
+            <TouchableOpacity
+              style={styles.card}
+              onPress={() => navigation.navigate("DriverDetail", { driverId: item.id })}
+            >
               <View style={styles.cardHeader}>
                 <View style={styles.driverNameWrapper}>
                   <Text style={styles.driverId} numberOfLines={1} ellipsizeMode="tail">
@@ -133,7 +137,7 @@ const DriversScreen = () => {
                   {teamDisplay}
                 </Text>
               </View>
-            </View>
+            </TouchableOpacity>
           );
         }}
       />

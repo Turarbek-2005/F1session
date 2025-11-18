@@ -6,13 +6,14 @@ import {
   FlatList,
   ActivityIndicator,
   Image,
+  TouchableOpacity,
 } from "react-native";
 import { useAppDispatch, useAppSelector } from "./hooks";
 import { fetchTeams, selectAllTeams, selectTeamsStatus } from "./teamsSlice";
 import { fetchDrivers, selectAllDrivers } from "./driversSlice";
 import { f1ApiService } from "./f1ApiService";
 
-const TeamsScreen = () => {
+const TeamsScreen = ({ navigation }: any) => {
   const dispatch = useAppDispatch();
   const teams = useAppSelector(selectAllTeams);
   const drivers = useAppSelector(selectAllDrivers);
@@ -79,7 +80,10 @@ const TeamsScreen = () => {
           const teamDrivers = drivers.filter((d) => d.teamId === item.teamId);
 
           return (
-            <View style={styles.card}>
+            <TouchableOpacity
+              style={styles.card}
+              onPress={() => navigation.navigate("TeamDetail", { teamId: item.id })}
+            >
               <View style={styles.cardHeader}>
                 <Text style={styles.teamName}>
                   {String(matchedTeam?.teamName ?? item.teamId)}
@@ -114,7 +118,11 @@ const TeamsScreen = () => {
                     );
 
                     return (
-                      <View key={driver.id} style={styles.driverRow}>
+                      <TouchableOpacity
+                        key={driver.id}
+                        style={styles.driverRow}
+                        onPress={() => navigation.navigate("DriverDetail", { driverId: driver.id })}
+                      >
                         {driver.imgUrl && (
                           <View style={styles.driverThumbWrapper}>
                             <Image
@@ -128,12 +136,12 @@ const TeamsScreen = () => {
                             ? `${matchedDriverApi.name} ${matchedDriverApi.surname}`
                             : String(driver.driverId)}
                         </Text>
-                      </View>
+                      </TouchableOpacity>
                     );
                   })}
                 </View>
               )}
-            </View>
+            </TouchableOpacity>
           );
         }}
       />

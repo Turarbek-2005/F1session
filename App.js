@@ -7,6 +7,8 @@ import { store } from "./screens/store";
 import HomeScreen from "./screens/HomeScreen";
 import TeamsScreen from "./screens/TeamsScreen";
 import DriversScreen from "./screens/DriversScreen";
+import DriverDetailScreen from "./screens/DriverDetailScreen";
+import TeamDetailScreen from "./screens/TeamDetailScreen";
 
 const Stack = createStackNavigator();
 
@@ -29,7 +31,7 @@ function App() {
           <Stack.Screen 
             name="Home" 
             component={HomeScreen}
-            options={{ title: 'F1KZ' }}
+            options={{ headerShown: false }}
           />
           <Stack.Screen 
             name="Teams" 
@@ -40,6 +42,16 @@ function App() {
             name="Drivers" 
             component={DriversScreen}
             options={{ title: 'F1 Drivers 2025' }}
+          />
+          <Stack.Screen 
+            name="DriverDetail" 
+            component={DriverDetailScreen}
+            options={{ title: 'Driver Details' }}
+          />
+          <Stack.Screen 
+            name="TeamDetail" 
+            component={TeamDetailScreen}
+            options={{ title: 'Team Details' }}
           />
         </Stack.Navigator>
       </NavigationContainer>
