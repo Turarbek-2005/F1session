@@ -1,6 +1,21 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Modal } from 'react-native';
-import { StackNavigationProp } from '@react-navigation/stack';
+import React, { ComponentProps, useState } from "react";
+import {
+  View,
+  StyleSheet,
+  Modal,
+  TouchableOpacity,
+  Pressable,
+  Text,
+} from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { StackNavigationProp } from "@react-navigation/stack";
+import {
+  AppBar,
+  IconButton,
+  Button,
+  Surface,
+} from "@react-native-material/core";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 type RootStackParamList = {
   Home: undefined;
@@ -8,7 +23,7 @@ type RootStackParamList = {
   Teams: undefined;
 };
 
-type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
+type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, "Home">;
 
 type Props = {
   navigation: HomeScreenNavigationProp;
@@ -17,14 +32,14 @@ type Props = {
 const HomeScreen: React.FC<Props> = ({ navigation }) => {
   const [menuVisible, setMenuVisible] = useState(false);
 
-  const links = [
-    { name: "Drivers", screen: "Drivers" as const, icon: "🏎️" },
-    { name: "Teams", screen: "Teams" as const, icon: "🏁" },
-  ];
+  type MCI = ComponentProps<typeof MaterialCommunityIcons>["name"];
 
-  const toggleMenu = () => {
-    setMenuVisible(!menuVisible);
-  };
+const links: { name: string; screen: keyof RootStackParamList; icon: MCI }[] = [
+  { name: "Drivers", screen: "Drivers", icon: "car" },
+  { name: "Teams", screen: "Teams", icon: "flag-checkered" },
+];
+
+  const toggleMenu = () => setMenuVisible((v) => !v);
 
   const navigateTo = (screen: keyof RootStackParamList) => {
     setMenuVisible(false);
@@ -32,258 +47,218 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.container}>
-      {/* Header with Burger Menu */}
-      <View style={styles.header}>
-        <TouchableOpacity 
-          style={styles.burgerButton} 
-          onPress={toggleMenu}
-          activeOpacity={0.7}
-        >
-          <View style={styles.burgerLine} />
-          <View style={styles.burgerLine} />
-          <View style={styles.burgerLine} />
-        </TouchableOpacity>
-        <Text style={styles.headerTitle}>F1KZ</Text>
-        <View style={styles.headerSpacer} />
-      </View>
+    <SafeAreaView style={styles.container}>
+      {/* AppBar */}
+      <AppBar
+        title="F1KZ"
+        color="#e10600"
+        centerTitle={true}
+        leading={
+          <IconButton
+            icon={<MaterialCommunityIcons name="menu" size={24} color="#fff" />}
+            onPress={toggleMenu}
+          />
+        }
+        trailing={
+          <IconButton
+            icon={
+              <MaterialCommunityIcons
+                name="dots-vertical"
+                size={24}
+                color="#fff"
+              />
+            }
+            onPress={() => {}}
+          />
+        }
+      />
 
-      {/* Burger Menu Modal */}
+      {/* Drawer implemented with Modal + Surface */}
       <Modal
         visible={menuVisible}
-        transparent={true}
+        transparent
         animationType="fade"
         onRequestClose={toggleMenu}
       >
-        <TouchableOpacity 
-          style={styles.modalOverlay} 
-          activeOpacity={1} 
+        <TouchableOpacity
+          style={styles.modalOverlay}
+          activeOpacity={1}
           onPress={toggleMenu}
         >
-          <View style={styles.menuContainer}>
-            <View style={styles.menuHeader}>
-              <Text style={styles.menuTitle}>Menu</Text>
-              <TouchableOpacity onPress={toggleMenu} style={styles.closeButton}>
-                <Text style={styles.closeButtonText}>✕</Text>
-              </TouchableOpacity>
+          <Surface style={styles.drawerSurface} elevation={6}>
+            <View style={styles.drawerHeader}>
+              <MaterialCommunityIcons
+                name="speedometer"
+                size={42}
+                color="#e10600"
+              />
+              <View style={{ marginLeft: 12 }}>
+                <Text style={styles.drawerTitle}>F1KZ</Text>
+                <Text style={styles.drawerSubtitle}>Formula 1 Kazakhstan</Text>
+              </View>
             </View>
-            
-            <View style={styles.menuItems}>
-              <TouchableOpacity 
-                style={[styles.menuItem, styles.menuItemActive]}
-                onPress={() => navigateTo('Home')}
+
+            <View style={styles.drawerItems}>
+              <TouchableOpacity
+                style={[styles.drawerItem, styles.drawerItemActive]}
+                onPress={() => navigateTo("Home")}
               >
-                <Text style={styles.menuIcon}>🏠</Text>
-                <Text style={styles.menuItemText}>Home</Text>
+                <MaterialCommunityIcons name="home" size={22} color="#fff" />
+                <Text style={styles.drawerItemText}>Home</Text>
               </TouchableOpacity>
 
               {links.map((link) => (
                 <TouchableOpacity
                   key={link.name}
-                  style={styles.menuItem}
+                  style={styles.drawerItem}
                   onPress={() => navigateTo(link.screen)}
                 >
-                  <Text style={styles.menuIcon}>{link.icon}</Text>
-                  <Text style={styles.menuItemText}>{link.name}</Text>
+                  <MaterialCommunityIcons
+                    name={link.icon}
+                    size={22}
+                    color="#fff"
+                  />
+                  <Text style={styles.drawerItemText}>{link.name}</Text>
                 </TouchableOpacity>
               ))}
             </View>
 
-            <View style={styles.menuFooter}>
-              <Text style={styles.menuFooterText}>F1KZ © {new Date().getFullYear()}</Text>
+            <View style={styles.drawerFooter}>
+              <Text style={styles.drawerFooterText}>
+                © {new Date().getFullYear()} F1KZ
+              </Text>
             </View>
-          </View>
+          </Surface>
         </TouchableOpacity>
       </Modal>
 
-      {/* Заголовок */}
-      <Text style={styles.title}>
-        Welcome to <Text style={styles.titleHighlight}>F1KZ</Text>
-      </Text>
-      <Text style={styles.subtitle}>Explore your favorite Formula 1 teams and drivers</Text>
+      {/* Content */}
+      <View style={styles.content}>
+        <Text style={styles.title}>
+          Welcome to <Text style={styles.titleHighlight}>F1KZ</Text>
+        </Text>
+        <Text style={styles.subtitle}>
+          Explore your favorite Formula 1 teams and drivers
+        </Text>
 
-      {/* Карточки */}
-      <View style={styles.gridContainer}>
-        {links.map((link) => (
-          <TouchableOpacity
-            key={link.name}
-            style={styles.card}
-            onPress={() => navigation.navigate(link.screen)}
-            activeOpacity={0.8}
-          >
-            <Text style={styles.cardTitle}>{link.name}</Text>
-          </TouchableOpacity>
-        ))}
+        <View style={styles.gridContainer}>
+          {links.map((link) => (
+            <Pressable
+              key={link.name}
+              onPress={() => navigation.navigate(link.screen)}
+              style={({ pressed }) => [
+                styles.card,
+                pressed ? { transform: [{ scale: 0.99 }] } : null,
+              ]}
+            >
+              <Surface elevation={4} style={styles.cardSurface}>
+                <View style={styles.cardInner}>
+                  <MaterialCommunityIcons
+                    name={link.icon}
+                    size={44}
+                    color="#e10600"
+                  />
+                  <Text style={styles.cardTitle}>{link.name}</Text>
+                  <Button
+                    title="Open"
+                    color="#e10600"
+                    onPress={() => navigation.navigate(link.screen)}
+                    style={styles.cardButton}
+                  />
+                </View>
+              </Surface>
+            </Pressable>
+          ))}
+        </View>
       </View>
 
-      {/* Футер */}
-      <Text style={styles.footer}>
-        © {new Date().getFullYear()} F1KZ. All rights reserved.
-      </Text>
-    </View>
+      <View style={styles.footerWrapper}>
+        <Text style={styles.footer}>
+          © {new Date().getFullYear()} F1KZ. All rights reserved.
+        </Text>
+      </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#000',
-  },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingTop: 50,
-    paddingBottom: 15,
-    backgroundColor: '#ff0000ff',
-  },
-  burgerButton: {
-    width: 40,
-    height: 40,
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: 6,
-  },
-  burgerLine: {
-    width: 30,
-    height: 3,
-    backgroundColor: '#fff',
-    borderRadius: 2,
-  },
-  headerTitle: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#fff',
-  },
-  headerSpacer: {
-    width: 40,
-  },
+  container: { flex: 1, backgroundColor: "#000" },
   modalOverlay: {
     flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+    backgroundColor: "rgba(0,0,0,0.6)",
+    flexDirection: "row",
   },
-  menuContainer: {
-    width: 280,
-    height: '100%',
-    backgroundColor: '#111',
-    borderRightWidth: 2,
-    borderRightColor: '#e10600',
-  },
-  menuHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+  drawerSurface: { width: 280, backgroundColor: "#111", paddingBottom: 40 },
+  drawerHeader: {
+    flexDirection: "row",
+    alignItems: "center",
     padding: 20,
-    paddingTop: 60,
+    paddingTop: 40,
     borderBottomWidth: 1,
-    borderBottomColor: '#333',
+    borderBottomColor: "#222",
   },
-  menuTitle: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    color: '#e10600',
+  drawerTitle: { color: "#e10600", fontSize: 20, fontWeight: "700" },
+  drawerSubtitle: { color: "#bbb", fontSize: 12 },
+  drawerItems: { paddingTop: 12 },
+  drawerItem: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingVertical: 14,
+    paddingHorizontal: 18,
+    gap: 12,
   },
-  closeButton: {
-    width: 36,
-    height: 36,
-    justifyContent: 'center',
-    alignItems: 'center',
+  drawerItemActive: {
+    backgroundColor: "#1a1a1a",
+    borderLeftWidth: 4,
+    borderLeftColor: "#e10600",
   },
-  closeButtonText: {
-    fontSize: 28,
-    color: '#fff',
-    fontWeight: '300',
+  drawerItemText: {
+    color: "#fff",
+    marginLeft: 8,
+    fontSize: 16,
+    fontWeight: "600",
   },
-  menuItems: {
-    paddingTop: 20,
-  },
-  menuItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingVertical: 18,
-    paddingHorizontal: 20,
-    gap: 15,
-    borderLeftWidth: 3,
-    borderLeftColor: 'transparent',
-  },
-  menuItemActive: {
-    backgroundColor: '#1a1a1a',
-    borderLeftColor: '#e10600',
-  },
-  menuIcon: {
-    fontSize: 24,
-  },
-  menuItemText: {
-    fontSize: 18,
-    color: '#fff',
-    fontWeight: '600',
-  },
-  menuFooter: {
-    position: 'absolute',
-    bottom: 30,
+  drawerFooter: {
+    position: "absolute",
+    bottom: 18,
     left: 0,
     right: 0,
-    alignItems: 'center',
+    alignItems: "center",
   },
-  menuFooterText: {
-    color: '#666',
-    fontSize: 12,
-  },
+  drawerFooterText: { color: "#666", fontSize: 12 },
+  content: { padding: 20, alignItems: "center" },
   title: {
-    fontSize: 60,
-    fontWeight: 'bold',
-    color: '#fff',
-    textAlign: 'center',
-    marginTop: 100,
+    color: "#fff",
+    fontSize: 36,
+    textAlign: "center",
+    marginTop: 36,
+    fontWeight: "800",
   },
-  titleHighlight: {
-    color: '#e10600',
-  },
+  titleHighlight: { color: "#e10600" },
   subtitle: {
-    fontSize: 22,
-    color: '#fff',
-    textAlign: 'center',
-    marginTop: 10,
-    marginBottom: 40,
-    fontWeight: '500',
-    paddingHorizontal: 20,
+    color: "#ddd",
+    textAlign: "center",
+    marginTop: 8,
+    marginBottom: 24,
   },
   gridContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    gap: 30,
-    maxWidth: 800,
-    alignSelf: 'center',
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "center",
   },
-  card: {
-    backgroundColor: '#111',
-    borderRadius: 20,
-    width: 140,
-    height: 100,
-    justifyContent: 'center',
-    alignItems: 'center',
-    shadowColor: '#e10600',
-    shadowOffset: { width: 0, height: 6 },
-    shadowOpacity: 0.6,
-    shadowRadius: 10,
-    elevation: 8,
-    borderWidth: 1,
-    borderColor: '#333',
+  card: { width: 160, margin: 8, borderRadius: 12 },
+  cardSurface: {
+    borderRadius: 12,
+    backgroundColor: "#111",
+    paddingVertical: 12,
+    paddingHorizontal: 8,
+    alignItems: "center",
   },
-  cardTitle: {
-    color: '#fff',
-    fontSize: 30,
-    fontWeight: '800',
-    textAlign: 'center',
-  },
-  footer: {
-    color: '#aaa',
-    fontSize: 16,
-    marginTop: 80,
-    marginBottom: 30,
-    textAlign: 'center',
-  },
+  cardInner: { alignItems: "center", justifyContent: "center" },
+  cardTitle: { color: "#fff", marginTop: 8, fontSize: 18, fontWeight: "700" },
+  cardButton: { marginTop: 10, alignSelf: "center" },
+  footerWrapper: { alignItems: "center", marginTop: 20 },
+  footer: { color: "#888" },
 });
 
 export default HomeScreen;

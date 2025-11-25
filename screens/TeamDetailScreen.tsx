@@ -6,13 +6,16 @@ import {
   ActivityIndicator,
   Image,
   ScrollView,
-  TouchableOpacity,
+  Pressable,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { useAppSelector } from "./hooks";
 import { selectAllTeams } from "./teamsSlice";
 import { selectAllDrivers } from "./driversSlice";
 import { f1ApiService } from "./f1ApiService";
 import { TeamDetailsResponse } from "./types";
+import { AppBar, IconButton, Surface, Button } from "@react-native-material/core";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const TeamDetailScreen = ({ route, navigation }: any) => {
   const { teamId } = route.params;
@@ -44,9 +47,9 @@ const TeamDetailScreen = ({ route, navigation }: any) => {
 
   if (loading || !team) {
     return (
-      <View style={styles.centerContainer}>
+      <SafeAreaView style={styles.centerContainer}>
         <ActivityIndicator size="large" color="#e10600" />
-      </View>
+      </SafeAreaView>
     );
   }
 
@@ -54,196 +57,257 @@ const TeamDetailScreen = ({ route, navigation }: any) => {
   const apiTeam = teamDetails?.team?.[0];
 
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.header}>
-        {team.teamImgUrl && (
-          <Image
-            source={{ uri: team.teamImgUrl }}
-            style={styles.teamLogo}
-            resizeMode="contain"
+    <View style={styles.screen}>
+      <AppBar
+        title={apiTeam?.teamName || team.teamId}
+        color="#111"
+        titleStyle={styles.appbarTitle}
+        leading={
+          <IconButton
+            icon={<MaterialCommunityIcons name="arrow-left" size={22} color="#fff" />}
+            onPress={() => navigation.goBack()}
           />
-        )}
-        <Text style={styles.teamName}>
-          {apiTeam?.teamName || team.teamId}
-        </Text>
-        {apiTeam?.teamNationality && (
-          <Text style={styles.nationality}>{apiTeam.teamNationality}</Text>
-        )}
-      </View>
+        }
+      />
 
-      {apiTeam && (
-        <View style={styles.statsSection}>
-          <Text style={styles.sectionTitle}>Team Statistics</Text>
-          <View style={styles.statsGrid}>
-            <View style={styles.statCard}>
-              <Text style={styles.statValue}>{apiTeam.constructorsChampionships}</Text>
-              <Text style={styles.statLabel}>Constructor Titles</Text>
-            </View>
-            <View style={styles.statCard}>
-              <Text style={styles.statValue}>{apiTeam.driversChampionships}</Text>
-              <Text style={styles.statLabel}>Driver Titles</Text>
-            </View>
-            <View style={styles.statCard}>
-              <Text style={styles.statValue}>{apiTeam.firstAppeareance}</Text>
-              <Text style={styles.statLabel}>First Season</Text>
-            </View>
-            <View style={styles.statCard}>
-              <Text style={styles.statValue}>
-                {new Date().getFullYear() - apiTeam.firstAppeareance}
-              </Text>
-              <Text style={styles.statLabel}>Years in F1</Text>
+      <ScrollView style={styles.container} contentContainerStyle={{ paddingBottom: 40 }}>
+        <Surface elevation={2} style={styles.headerSurface}>
+          <View style={styles.header}>
+            {team.teamImgUrl ? (
+              <Image
+                source={{ uri: team.teamImgUrl }}
+                style={styles.teamLogo}
+                resizeMode="contain"
+              />
+            ) : (
+              <View style={styles.teamLogoPlaceholder}>
+                <MaterialCommunityIcons name="account-group" size={48} color="#333" />
+              </View>
+            )}
+
+            <View style={styles.headerText}>
+              <Text style={styles.teamName}>{apiTeam?.teamName || team.teamId}</Text>
+              {apiTeam?.teamNationality && (
+                <Text style={styles.nationality}>{apiTeam.teamNationality}</Text>
+              )}
             </View>
           </View>
-        </View>
-      )}
+        </Surface>
 
-      {team.bolidImgUrl && (
-        <View style={styles.carSection}>
-          <Text style={styles.sectionTitle}>2025 Car</Text>
-          <Image
-            source={{ uri: team.bolidImgUrl }}
-            style={styles.carImage}
-            resizeMode="contain"
-          />
-        </View>
-      )}
+        {apiTeam && (
+          <View style={styles.statsSection}>
+            <Text style={styles.sectionTitle}>Team Statistics</Text>
+            <View style={styles.statsGrid}>
+              <Surface elevation={3} style={styles.statCard}>
+                <MaterialCommunityIcons name="trophy" size={24} color="#e10600" />
+                <Text style={styles.statValue}>{apiTeam.constructorsChampionships}</Text>
+                <Text style={styles.statLabel}>Constructor Titles</Text>
+              </Surface>
 
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Drivers ({teamDrivers.length})</Text>
-        {teamDrivers.map((driver) => {
-          return (
-            <TouchableOpacity
+              <Surface elevation={3} style={styles.statCard}>
+                <MaterialCommunityIcons name="account-tie" size={24} color="#e10600" />
+                <Text style={styles.statValue}>{apiTeam.driversChampionships}</Text>
+                <Text style={styles.statLabel}>Driver Titles</Text>
+              </Surface>
+
+              <Surface elevation={3} style={styles.statCard}>
+                <MaterialCommunityIcons name="calendar" size={24} color="#e10600" />
+                <Text style={styles.statValue}>{apiTeam.firstAppeareance}</Text>
+                <Text style={styles.statLabel}>First Season</Text>
+              </Surface>
+
+              <Surface elevation={3} style={styles.statCard}>
+                <MaterialCommunityIcons name="history" size={24} color="#e10600" />
+                <Text style={styles.statValue}>
+                  {new Date().getFullYear() - apiTeam.firstAppeareance}
+                </Text>
+                <Text style={styles.statLabel}>Years in F1</Text>
+              </Surface>
+            </View>
+          </View>
+        )}
+
+        {team.bolidImgUrl && (
+          <View style={styles.carSection}>
+            <Text style={styles.sectionTitle}>2025 Car</Text>
+            <Surface elevation={2} style={styles.carSurface}>
+              <Image source={{ uri: team.bolidImgUrl }} style={styles.carImage} resizeMode="contain" />
+            </Surface>
+          </View>
+        )}
+
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Drivers ({teamDrivers.length})</Text>
+
+          {teamDrivers.map((driver) => (
+            <Pressable
               key={driver.id}
-              style={styles.driverCard}
               onPress={() => navigation.navigate("DriverDetail", { driverId: driver.id })}
+              style={({ pressed }) => [
+                styles.driverCard,
+                pressed && { opacity: 0.92, transform: [{ scale: 0.995 }] },
+              ]}
             >
-              {driver.imgUrl && (
-                <View style={styles.driverImageWrapper}>
-                  <Image
-                    source={{ uri: driver.imgUrl }}
-                    style={styles.driverImage}
-                  />
-                </View>
-              )}
-              <View style={styles.driverInfo}>
-                <Text style={styles.driverName}>{driver.driverId}</Text>
-                {driver.nationalityImgUrl && (
-                  <View style={styles.nationalityContainer}>
-                    <Image
-                      source={{ uri: driver.nationalityImgUrl }}
-                      style={styles.flagImage}
-                    />
-                    <Text style={styles.driverNationality}>
-                      {driver.nationality}
-                    </Text>
+              <Surface elevation={2} style={styles.driverSurface}>
+                {driver.imgUrl ? (
+                  <View style={styles.driverImageWrapper}>
+                    <Image source={{ uri: driver.imgUrl }} style={styles.driverImage} />
+                  </View>
+                ) : (
+                  <View style={styles.driverImagePlaceholder}>
+                    <MaterialCommunityIcons name="account" size={36} color="#333" />
                   </View>
                 )}
-              </View>
-            </TouchableOpacity>
-          );
-        })}
-      </View>
-    </ScrollView>
+
+                <View style={styles.driverInfo}>
+                  <Text style={styles.driverName}>{driver.driverId}</Text>
+                  {driver.nationalityImgUrl && (
+                    <View style={styles.nationalityContainer}>
+                      <Image source={{ uri: driver.nationalityImgUrl }} style={styles.flagImage} />
+                      <Text style={styles.driverNationality}>{driver.nationality}</Text>
+                    </View>
+                  )}
+                </View>
+
+                <Button
+                  title="Open"
+                  color="#e10600"
+                  onPress={() => navigation.navigate("DriverDetail", { driverId: driver.id })}
+                  style={styles.openButton}
+                />
+              </Surface>
+            </Pressable>
+          ))}
+        </View>
+      </ScrollView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#0d0d0d",
-  },
+  screen: { flex: 1, backgroundColor: "#0d0d0d" },
+  container: { flex: 1, paddingHorizontal: 16 },
+
   centerContainer: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#0d0d0d",
   },
-  header: {
+
+  appbarTitle: { color: "#fff", fontWeight: "700" },
+
+  headerSurface: {
+    marginTop: 12,
+    borderRadius: 12,
     backgroundColor: "#1a1a1a",
-    padding: 30,
+    paddingVertical: 18,
+    paddingHorizontal: 14,
+  },
+  header: {
+    flexDirection: "row",
     alignItems: "center",
   },
   teamLogo: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
-    marginBottom: 20,
+    width: 72,
+    height: 72,
+    borderRadius: 48,
+    marginRight: 14,
   },
+  teamLogoPlaceholder: {
+    width: 96,
+    height: 96,
+    borderRadius: 48,
+    marginRight: 14,
+    backgroundColor: "#0b0b0b",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  headerText: { flex: 1 },
   teamName: {
-    fontSize: 28,
+    fontSize: 22,
     fontWeight: "900",
     color: "#fff",
     textTransform: "uppercase",
-    textAlign: "center",
-    marginBottom: 8,
+    marginBottom: 6,
   },
   nationality: {
-    fontSize: 16,
+    fontSize: 14,
     color: "#999",
-    textAlign: "center",
   },
+
   statsSection: {
-    padding: 20,
-    backgroundColor: "#1a1a1a",
-    marginTop: 2,
+    marginTop: 12,
+    marginBottom: 12,
   },
   statsGrid: {
     flexDirection: "row",
     flexWrap: "wrap",
+    justifyContent: "space-between",
     gap: 12,
   },
   statCard: {
-    backgroundColor: "#0d0d0d",
+    width: "48%",
+    minHeight: 96,
     borderRadius: 12,
-    padding: 16,
-    flex: 1,
-    minWidth: "45%",
+    padding: 12,
     alignItems: "center",
-    borderWidth: 1,
-    borderColor: "#e10600",
+    justifyContent: "center",
+    backgroundColor: "#111",
   },
   statValue: {
-    fontSize: 32,
+    fontSize: 22,
     fontWeight: "900",
     color: "#e10600",
-    marginBottom: 4,
+    marginTop: 6,
   },
   statLabel: {
     fontSize: 12,
     color: "#ccc",
     textTransform: "uppercase",
-    fontWeight: "600",
+    marginTop: 6,
+    fontWeight: "700",
     textAlign: "center",
   },
+
   carSection: {
-    padding: 20,
-    backgroundColor: "#1a1a1a",
-    marginTop: 2,
+    marginTop: 12,
+    marginBottom: 12,
+  },
+  carSurface: {
+    borderRadius: 12,
+    padding: 12,
+    backgroundColor: "#111",
+    alignItems: "center",
   },
   carImage: {
     width: "100%",
     height: 180,
     borderRadius: 12,
-    marginTop: 12,
   },
+
   section: {
-    padding: 20,
+    marginBottom: 16,
   },
   sectionTitle: {
-    fontSize: 20,
-    fontWeight: "700",
+    fontSize: 16,
+    fontWeight: "800",
     color: "#e10600",
-    marginBottom: 16,
+    marginBottom: 8,
     textTransform: "uppercase",
   },
+
   driverCard: {
-    backgroundColor: "#1a1a1a",
+    marginBottom: 12,
     borderRadius: 12,
-    padding: 16,
-    marginBottom: 16,
+  },
+  driverSurface: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 16,
+    gap: 12,
+    padding: 12,
+    borderRadius: 12,
+    backgroundColor: "#1a1a1a",
   },
   driverImageWrapper: {
     width: 80,
@@ -258,38 +322,43 @@ const styles = StyleSheet.create({
     top: 0,
     resizeMode: "cover",
   },
+  driverImagePlaceholder: {
+    width: 80,
+    height: 100,
+    borderRadius: 8,
+    backgroundColor: "#0b0b0b",
+    justifyContent: "center",
+    alignItems: "center",
+  },
   driverInfo: {
     flex: 1,
   },
   driverName: {
-    fontSize: 18,
-    fontWeight: "700",
+    fontSize: 16,
+    fontWeight: "800",
     color: "#fff",
     textTransform: "uppercase",
-    marginBottom: 8,
-  },
-  driverNumber: {
-    fontSize: 24,
-    fontWeight: "700",
-    color: "#e10600",
-    marginBottom: 8,
+    marginBottom: 6,
   },
   nationalityContainer: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 8,
   },
   flagImage: {
-    width: 28,
-    height: 28,
-    borderRadius: 14,
+    width: 26,
+    height: 26,
+    borderRadius: 13,
     borderWidth: 1,
     borderColor: "#e10600",
+    marginRight: 8,
   },
   driverNationality: {
-    fontSize: 14,
+    fontSize: 12,
     color: "#ccc",
-    fontWeight: "600",
+  },
+
+  openButton: {
+    minWidth: 80,
   },
 });
 

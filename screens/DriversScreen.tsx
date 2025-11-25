@@ -6,8 +6,9 @@ import {
   FlatList,
   ActivityIndicator,
   Image,
-  TouchableOpacity,
+  Pressable,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { useAppDispatch, useAppSelector } from "./hooks";
 import {
   fetchDrivers,
@@ -15,6 +16,8 @@ import {
   selectDriversStatus,
 } from "./driversSlice";
 import { f1ApiService } from "./f1ApiService";
+import { AppBar, IconButton, Surface } from "@react-native-material/core";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const DriversScreen = ({ navigation }: any) => {
   const dispatch = useAppDispatch();
@@ -48,29 +51,42 @@ const DriversScreen = ({ navigation }: any) => {
 
   if (status === "loading" || loading) {
     return (
-      <View style={styles.centerContainer}>
+      <SafeAreaView style={styles.screenCenter}>
         <ActivityIndicator size="large" color="#e10600" />
         <Text style={styles.loadingText}>Loading drivers...</Text>
-      </View>
+      </SafeAreaView>
     );
   }
 
   if (status === "failed") {
     return (
-      <View style={styles.centerContainer}>
+      <SafeAreaView style={styles.screenCenter}>
+        <MaterialCommunityIcons name="alert-circle" size={48} color="#e10600" />
         <Text style={styles.errorText}>Failed to load drivers</Text>
         <Text style={styles.errorSubtext}>
           Make sure the API server is running
         </Text>
-      </View>
+      </SafeAreaView>
     );
   }
 
-  const sortedDrivers = Array.isArray(drivers) ? [...drivers].sort((a, b) => (a?.id ?? 0) - (b?.id ?? 0)) : [];
+  const sortedDrivers = Array.isArray(drivers)
+    ? [...drivers].sort((a, b) => (a?.id ?? 0) - (b?.id ?? 0))
+    : [];
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>{String("F1 DRIVERS")}</Text>
+      <AppBar
+        title="F1 DRIVERS"
+        color="#111"
+        titleStyle={styles.appbarTitle}
+        leading={
+          <IconButton
+            icon={<MaterialCommunityIcons name="chevron-left" size={24} color="#fff" />}
+            onPress={() => navigation.goBack()}
+          />
+        }
+      />
 
       <FlatList
         data={sortedDrivers}
@@ -86,7 +102,6 @@ const DriversScreen = ({ navigation }: any) => {
             (teamApi: any) => teamApi?.teamId === item?.teamId
           );
 
-          // безопасные строки:
           const displayDriverId = matchedDriver
             ? `${String(matchedDriver.name ?? "")} ${String(matchedDriver.surname ?? "")}`.trim()
             : String(item?.driverId ?? "");
@@ -103,41 +118,49 @@ const DriversScreen = ({ navigation }: any) => {
             : String(item?.teamId ?? "");
 
           return (
-            <TouchableOpacity
-              style={styles.card}
+            <Pressable
               onPress={() => navigation.navigate("DriverDetail", { driverId: item.id })}
+              style={({ pressed }) => [
+                styles.card,
+                pressed && { opacity: 0.92, transform: [{ scale: 0.995 }] },
+              ]}
             >
-              <View style={styles.cardHeader}>
-                <View style={styles.driverNameWrapper}>
-                  <Text style={styles.driverId} numberOfLines={1} ellipsizeMode="tail">
-                    {displayDriverId}
-                  </Text>
+              <Surface elevation={3} style={styles.cardSurface}>
+                <View style={styles.cardHeader}>
+                  <View style={styles.driverNameWrapper}>
+                    <Text style={styles.driverId} numberOfLines={1} ellipsizeMode="tail">
+                      {displayDriverId}
+                    </Text>
 
-                  {displayDriverNumber && (
-                    <Text style={styles.driverNumber}>{`#${displayDriverNumber}`}</Text>
+                    {displayDriverNumber && (
+                      <Text style={styles.driverNumber}>{`#${displayDriverNumber}`}</Text>
+                    )}
+                  </View>
+
+                  {nationalityUri ? (
+                    <Image source={{ uri: nationalityUri }} style={styles.flagIcon} />
+                  ) : (
+                    <View style={styles.flagPlaceholder} />
                   )}
                 </View>
 
-                {nationalityUri ? (
-                  <Image source={{ uri: nationalityUri }} style={styles.flagIcon} />
+                {driverImgUri ? (
+                  <View style={styles.driverImageWrapper}>
+                    <Image source={{ uri: driverImgUri }} style={styles.driverImage} />
+                  </View>
                 ) : (
-                  // если нет флага — выводим пустой аватар (не строку!)
-                  <View style={styles.flagPlaceholder} />
+                  <View style={styles.driverImagePlaceholder}>
+                    <MaterialCommunityIcons name="account" size={52} color="#333" />
+                  </View>
                 )}
-              </View>
 
-              {driverImgUri ? (
-                <View style={styles.driverImageWrapper}>
-                  <Image source={{ uri: driverImgUri }} style={styles.driverImage} />
+                <View style={styles.cardFooter}>
+                  <Text style={styles.teamId} numberOfLines={1}>
+                    {teamDisplay}
+                  </Text>
                 </View>
-              ) : null}
-
-              <View style={styles.cardFooter}>
-                <Text style={styles.teamId} numberOfLines={1}>
-                  {teamDisplay}
-                </Text>
-              </View>
-            </TouchableOpacity>
+              </Surface>
+            </Pressable>
           );
         }}
       />
@@ -149,61 +172,63 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#0d0d0d",
-    paddingTop: 50,
   },
-  header: {
+  appbarTitle: {
     color: "#fff",
-    fontSize: 28,
     fontWeight: "900",
-    textAlign: "center",
-    letterSpacing: 3,
-    marginBottom: 10,
-    textShadowColor: "#e10600",
-    textShadowRadius: 12,
+    letterSpacing: 2,
   },
-  centerContainer: {
+
+  screenCenter: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#0d0d0d",
   },
+
   loadingText: {
     marginTop: 10,
     fontSize: 16,
     color: "#ccc",
   },
+
   errorText: {
     fontSize: 18,
     color: "#e10600",
     fontWeight: "bold",
-    marginBottom: 8,
+    marginTop: 12,
   },
+
   errorSubtext: {
     fontSize: 14,
     color: "#888",
+    marginTop: 6,
   },
+
   listContent: {
     paddingHorizontal: 10,
+    paddingVertical: 12,
     paddingBottom: 40,
   },
   row: {
     justifyContent: "space-between",
   },
+
   card: {
     flex: 1,
-    backgroundColor: "#1a1a1a",
-    borderRadius: 16,
     margin: 6,
-    padding: 14,
     maxWidth: "48%",
-    minHeight: 220,
-    shadowColor: "#e10600",
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
-    shadowOffset: { width: 0, height: 4 },
-    elevation: 5,
   },
+  cardSurface: {
+    backgroundColor: "#1a1a1a",
+    borderRadius: 14,
+    padding: 12,
+    minHeight: 220,
+    alignItems: "center",
+  },
+
   cardHeader: {
+    width: "100%",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
@@ -211,19 +236,21 @@ const styles = StyleSheet.create({
   },
   driverNameWrapper: {
     flexShrink: 1,
+    paddingRight: 8,
   },
   driverId: {
-    fontSize: 14,
-    fontWeight: "700",
+    fontSize: 13,
+    fontWeight: "800",
     color: "#fff",
     textTransform: "uppercase",
   },
   driverNumber: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: "700",
     color: "#e10600",
     marginTop: 2,
   },
+
   flagIcon: {
     width: 28,
     height: 28,
@@ -239,13 +266,13 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#333",
   },
+
   driverImageWrapper: {
-    width: 140,
-    height: 180,
+    width: 120,
+    height: 200,
     overflow: "hidden",
-    borderRadius: 8,
-    position: "relative",
-    marginBottom: 8,
+    marginBottom: 16,
+    marginRight: 12,
   },
   driverImage: {
     width: "100%",
@@ -254,17 +281,29 @@ const styles = StyleSheet.create({
     top: 0,
     resizeMode: "cover",
   },
+  driverImagePlaceholder: {
+    width: 140,
+    height: 160,
+    borderRadius: 8,
+    backgroundColor: "#0b0b0b",
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 8,
+  },
+
   cardFooter: {
+    width: "100%",
     borderTopWidth: 1,
-    borderTopColor: "#2a2a2a",
+    borderTopColor: "#262626",
     paddingTop: 8,
+    alignItems: "center",
   },
   teamId: {
     fontSize: 13,
     color: "#ccc",
     textAlign: "center",
-    fontWeight: "500",
-    letterSpacing: 0.5,
+    fontWeight: "600",
+    letterSpacing: 0.4,
   },
 });
 

@@ -6,17 +6,21 @@ import {
   FlatList,
   ActivityIndicator,
   Image,
-  TouchableOpacity,
+  Pressable,
+  SafeAreaView as RNSafeAreaView,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { useAppDispatch, useAppSelector } from "./hooks";
 import { fetchTeams, selectAllTeams, selectTeamsStatus } from "./teamsSlice";
 import { fetchDrivers, selectAllDrivers } from "./driversSlice";
 import { f1ApiService } from "./f1ApiService";
+import { AppBar, IconButton, Surface } from "@react-native-material/core";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const TeamsScreen = ({ navigation }: any) => {
   const dispatch = useAppDispatch();
-  const teams = useAppSelector(selectAllTeams);
-  const drivers = useAppSelector(selectAllDrivers);
+  const teams = useAppSelector(selectAllTeams) || [];
+  const drivers = useAppSelector(selectAllDrivers) || [];
   const status = useAppSelector(selectTeamsStatus);
 
   const [driversApi, setDriversApi] = useState<any>({ drivers: [] });
@@ -33,8 +37,8 @@ const TeamsScreen = ({ navigation }: any) => {
           f1ApiService.getDrivers(),
           f1ApiService.getTeams(),
         ]);
-        setDriversApi(driversData);
-        setTeamsApi(teamsData);
+        setDriversApi(driversData ?? { drivers: [] });
+        setTeamsApi(teamsData ?? { teams: [] });
       } catch (error) {
         console.error("Failed to fetch F1 API data:", error);
       } finally {
@@ -47,31 +51,45 @@ const TeamsScreen = ({ navigation }: any) => {
 
   if (status === "loading" || loading) {
     return (
-      <View style={styles.centerContainer}>
+      <SafeAreaView style={styles.centerContainer}>
         <ActivityIndicator size="large" color="#e10600" />
         <Text style={styles.loadingText}>Loading teams...</Text>
-      </View>
+      </SafeAreaView>
     );
   }
 
   if (status === "failed") {
     return (
-      <View style={styles.centerContainer}>
+      <SafeAreaView style={styles.centerContainer}>
+        <MaterialCommunityIcons name="alert-circle" size={48} color="#e10600" />
         <Text style={styles.errorText}>Failed to load teams</Text>
         <Text style={styles.errorSubtext}>
           Make sure the API server is running
         </Text>
-      </View>
+      </SafeAreaView>
     );
   }
 
-  const sortedTeams = [...teams].sort((a, b) => a.id - b.id);
+  const sortedTeams = Array.isArray(teams) ? [...teams].sort((a, b) => (a?.id ?? 0) - (b?.id ?? 0)) : [];
 
   return (
-    <View style={styles.container}>
+    <View style={styles.screen}>
+      <AppBar
+        title="Teams"
+        color="#111"
+        titleStyle={styles.appbarTitle}
+        leading={
+          <IconButton
+            icon={<MaterialCommunityIcons name="chevron-left" size={24} color="#fff" />}
+            onPress={() => navigation.goBack()}
+          />
+        }
+        
+      />
+
       <FlatList
         data={sortedTeams}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item) => String(item?.id ?? Math.random())}
         contentContainerStyle={styles.listContent}
         renderItem={({ item }) => {
           const matchedTeam = teamsApi?.teams?.find(
@@ -80,68 +98,84 @@ const TeamsScreen = ({ navigation }: any) => {
           const teamDrivers = drivers.filter((d) => d.teamId === item.teamId);
 
           return (
-            <TouchableOpacity
-              style={styles.card}
+            <Pressable
               onPress={() => navigation.navigate("TeamDetail", { teamId: item.id })}
+              style={({ pressed }) => [
+                styles.cardWrapper,
+                pressed && { opacity: 0.92, transform: [{ scale: 0.997 }] },
+              ]}
             >
-              <View style={styles.cardHeader}>
-                <Text style={styles.teamName}>
-                  {String(matchedTeam?.teamName ?? item.teamId)}
-                </Text>
+              {/* Surface внутри Pressable — pointerEvents='none' чтобы не перехватывать нажатие */}
+              <Surface elevation={3} style={styles.card} pointerEvents="none">
+                <View style={styles.cardHeader}>
+                  <Text style={styles.teamName}>
+                    {String(matchedTeam?.teamName ?? item.teamId)}
+                  </Text>
 
+                  {item.teamImgUrl ? (
+                    <View style={styles.teamLogoWrapper}>
+                      <Image
+                        source={{ uri: item.teamImgUrl }}
+                        style={styles.teamLogo}
+                        resizeMode="contain"
+                      />
+                    </View>
+                  ) : (
+                    <View style={styles.teamLogoWrapper}>
+                      <MaterialCommunityIcons name="shield" size={28} color="#333" />
+                    </View>
+                  )}
+                </View>
 
-                {item.teamImgUrl && (
-                  <View style={styles.teamLogoWrapper}>
-                    <Image
-                      source={{ uri: item.teamImgUrl }}
-                      style={styles.teamLogo}
-                      resizeMode="contain"
-                    />
+                {item.bolidImgUrl && (
+                  <Image
+                    source={{ uri: item.bolidImgUrl }}
+                    style={styles.carImage}
+                    resizeMode="contain"
+                  />
+                )}
+
+                {teamDrivers.length > 0 && (
+                  <View style={styles.driversContainer}>
+                    <Text style={styles.driversLabel}>Drivers:</Text>
+                    {teamDrivers.map((driver) => {
+                      const matchedDriverApi = driversApi?.drivers?.find(
+                        (da: any) => da.driverId === driver.driverId
+                      );
+
+                      return (
+                        <Pressable
+                          key={driver.id}
+                          onPress={() => navigation.navigate("DriverDetail", { driverId: driver.id })}
+                          style={({ pressed }) => [
+                            styles.driverRow,
+                            pressed && { opacity: 0.9 },
+                          ]}
+                        >
+                          {driver.imgUrl ? (
+                            <View style={styles.driverThumbWrapper}>
+                              <Image
+                                source={{ uri: driver.imgUrl }}
+                                style={styles.driverThumbImage}
+                              />
+                            </View>
+                          ) : (
+                            <View style={styles.driverThumbWrapper}>
+                              <MaterialCommunityIcons name="account" size={20} color="#333" />
+                            </View>
+                          )}
+                          <Text style={styles.driverName}>
+                            {matchedDriverApi
+                              ? `${matchedDriverApi.name} ${matchedDriverApi.surname}`
+                              : String(driver.driverId)}
+                          </Text>
+                        </Pressable>
+                      );
+                    })}
                   </View>
                 )}
-              </View>
-
-              {item.bolidImgUrl && (
-                <Image
-                  source={{ uri: item.bolidImgUrl }}
-                  style={styles.carImage}
-                  resizeMode="contain"
-                />
-              )}
-
-              {teamDrivers.length > 0 && (
-                <View style={styles.driversContainer}>
-                  <Text style={styles.driversLabel}>Drivers:</Text>
-                  {teamDrivers.map((driver) => {
-                    const matchedDriverApi = driversApi?.drivers?.find(
-                      (da: any) => da.driverId === driver.driverId
-                    );
-
-                    return (
-                      <TouchableOpacity
-                        key={driver.id}
-                        style={styles.driverRow}
-                        onPress={() => navigation.navigate("DriverDetail", { driverId: driver.id })}
-                      >
-                        {driver.imgUrl && (
-                          <View style={styles.driverThumbWrapper}>
-                            <Image
-                              source={{ uri: driver.imgUrl }}
-                              style={styles.driverThumbImage}
-                            />
-                          </View>
-                        )}
-                        <Text style={styles.driverName}>
-                          {matchedDriverApi
-                            ? `${matchedDriverApi.name} ${matchedDriverApi.surname}`
-                            : String(driver.driverId)}
-                        </Text>
-                      </TouchableOpacity>
-                    );
-                  })}
-                </View>
-              )}
-            </TouchableOpacity>
+              </Surface>
+            </Pressable>
           );
         }}
       />
@@ -150,10 +184,13 @@ const TeamsScreen = ({ navigation }: any) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
+  screen: {
     flex: 1,
     backgroundColor: "#0d0d0d",
-    paddingTop: 10,
+  },
+  appbarTitle: {
+    color: "#fff",
+    fontWeight: "900",
   },
   centerContainer: {
     flex: 1,
@@ -170,23 +207,30 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: "#e10600",
     fontWeight: "bold",
-    marginBottom: 8,
+    marginTop: 12,
   },
   errorSubtext: {
     fontSize: 14,
     color: "#888",
+    marginTop: 6,
   },
   listContent: {
     paddingHorizontal: 12,
+    paddingVertical: 12,
     paddingBottom: 40,
+  },
+
+  /* Card */
+  cardWrapper: {
+    marginBottom: 16,
+    paddingHorizontal: 4,
   },
   card: {
     backgroundColor: "#1a1a1a",
     borderRadius: 16,
-    marginBottom: 16,
     padding: 14,
     shadowColor: "#e10600",
-    shadowOpacity: 0.2,
+    shadowOpacity: 0.18,
     shadowRadius: 8,
     shadowOffset: { width: 0, height: 4 },
     elevation: 5,
@@ -204,17 +248,17 @@ const styles = StyleSheet.create({
     textTransform: "uppercase",
   },
   teamLogoWrapper: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: "#333",
+    width: 42,
+    height: 42,
+    borderRadius: 21,
+    backgroundColor: "#222",
     justifyContent: "center",
     alignItems: "center",
   },
   teamLogo: {
-    width: 30,
-    height: 30,
-    borderRadius: 15,
+    width: 34,
+    height: 34,
+    borderRadius: 17,
   },
   carImage: {
     width: "100%",
@@ -222,6 +266,7 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     borderRadius: 10,
   },
+
   driversContainer: {
     marginTop: 8,
   },
@@ -237,12 +282,13 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   driverThumbWrapper: {
-    width: 30,
-    height: 40,
-    borderRadius: 16,
-    marginRight: 8,
+    width: 36,
+    height: 44,
+    borderRadius: 8,
+    marginRight: 10,
     overflow: "hidden",
-    position: "relative",
+    justifyContent: "center",
+    alignItems: "center",
   },
   driverThumbImage: {
     width: "100%",
