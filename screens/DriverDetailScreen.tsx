@@ -84,23 +84,7 @@ const DriverDetailScreen = ({ route, navigation }: any) => {
   return (
     <View style={styles.screen}>
       {/* Top AppBar */}
-      <AppBar
-        title={apiDriver ? `${apiDriver.name} ${apiDriver.surname}` : "Driver"}
-        color="#111"
-        titleStyle={styles.appbarTitle}
-        leading={
-          <IconButton
-            icon={
-              <MaterialCommunityIcons
-                name="arrow-left"
-                size={22}
-                color="#fff"
-              />
-            }
-            onPress={() => navigation.goBack()}
-          />
-        }
-      />
+      
 
       <ScrollView
         style={styles.container}

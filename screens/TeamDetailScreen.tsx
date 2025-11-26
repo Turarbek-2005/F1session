@@ -58,17 +58,7 @@ const TeamDetailScreen = ({ route, navigation }: any) => {
 
   return (
     <View style={styles.screen}>
-      <AppBar
-        title={apiTeam?.teamName || team.teamId}
-        color="#111"
-        titleStyle={styles.appbarTitle}
-        leading={
-          <IconButton
-            icon={<MaterialCommunityIcons name="arrow-left" size={22} color="#fff" />}
-            onPress={() => navigation.goBack()}
-          />
-        }
-      />
+      
 
       <ScrollView style={styles.container} contentContainerStyle={{ paddingBottom: 40 }}>
         <Surface elevation={2} style={styles.headerSurface}>

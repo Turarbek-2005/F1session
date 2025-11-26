@@ -59,18 +59,6 @@ const links: { name: string; screen: keyof RootStackParamList; icon: MCI }[] = [
             onPress={toggleMenu}
           />
         }
-        trailing={
-          <IconButton
-            icon={
-              <MaterialCommunityIcons
-                name="dots-vertical"
-                size={24}
-                color="#fff"
-              />
-            }
-            onPress={() => {}}
-          />
-        }
       />
 
       {/* Drawer implemented with Modal + Surface */}

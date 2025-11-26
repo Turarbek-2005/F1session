@@ -74,18 +74,7 @@ const TeamsScreen = ({ navigation }: any) => {
 
   return (
     <View style={styles.screen}>
-      <AppBar
-        title="Teams"
-        color="#111"
-        titleStyle={styles.appbarTitle}
-        leading={
-          <IconButton
-            icon={<MaterialCommunityIcons name="chevron-left" size={24} color="#fff" />}
-            onPress={() => navigation.goBack()}
-          />
-        }
-        
-      />
+      
 
       <FlatList
         data={sortedTeams}
@@ -232,7 +221,6 @@ const styles = StyleSheet.create({
     shadowColor: "#e10600",
     shadowOpacity: 0.18,
     shadowRadius: 8,
-    shadowOffset: { width: 0, height: 4 },
     elevation: 5,
   },
   cardHeader: {

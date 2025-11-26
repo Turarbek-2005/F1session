@@ -76,17 +76,7 @@ const DriversScreen = ({ navigation }: any) => {
 
   return (
     <View style={styles.container}>
-      <AppBar
-        title="F1 DRIVERS"
-        color="#111"
-        titleStyle={styles.appbarTitle}
-        leading={
-          <IconButton
-            icon={<MaterialCommunityIcons name="chevron-left" size={24} color="#fff" />}
-            onPress={() => navigation.goBack()}
-          />
-        }
-      />
+      
 
       <FlatList
         data={sortedDrivers}
