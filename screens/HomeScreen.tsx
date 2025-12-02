@@ -16,11 +16,16 @@ import {
   Surface,
 } from "@react-native-material/core";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState, AppDispatch } from "./store";
+import { logout } from "./authSlice";
 
 type RootStackParamList = {
   Home: undefined;
   Drivers: undefined;
   Teams: undefined;
+  Login: undefined;
+  Register: undefined;
 };
 
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, "Home">;
@@ -31,19 +36,26 @@ type Props = {
 
 const HomeScreen: React.FC<Props> = ({ navigation }) => {
   const [menuVisible, setMenuVisible] = useState(false);
+  const { user } = useSelector((state: RootState) => state.auth);
+  const dispatch: AppDispatch = useDispatch();
 
   type MCI = ComponentProps<typeof MaterialCommunityIcons>["name"];
 
-const links: { name: string; screen: keyof RootStackParamList; icon: MCI }[] = [
-  { name: "Drivers", screen: "Drivers", icon: "car" },
-  { name: "Teams", screen: "Teams", icon: "flag-checkered" },
-];
+  const links: { name: string; screen: keyof RootStackParamList; icon: MCI }[] = [
+    { name: "Drivers", screen: "Drivers", icon: "car" },
+    { name: "Teams", screen: "Teams", icon: "flag-checkered" },
+  ];
 
   const toggleMenu = () => setMenuVisible((v) => !v);
 
   const navigateTo = (screen: keyof RootStackParamList) => {
     setMenuVisible(false);
     navigation.navigate(screen);
+  };
+
+  const handleLogout = () => {
+    dispatch(logout());
+    toggleMenu();
   };
 
   return (
@@ -82,7 +94,9 @@ const links: { name: string; screen: keyof RootStackParamList; icon: MCI }[] = [
               />
               <View style={{ marginLeft: 12 }}>
                 <Text style={styles.drawerTitle}>F1KZ</Text>
-                <Text style={styles.drawerSubtitle}>Formula 1 Kazakhstan</Text>
+                <Text style={styles.drawerSubtitle}>
+                  {user ? `Welcome, ${user.username}` : "Formula 1 Kazakhstan"}
+                </Text>
               </View>
             </View>
 
@@ -109,6 +123,47 @@ const links: { name: string; screen: keyof RootStackParamList; icon: MCI }[] = [
                   <Text style={styles.drawerItemText}>{link.name}</Text>
                 </TouchableOpacity>
               ))}
+            </View>
+
+            <View style={styles.drawerAuthSection}>
+              {user ? (
+                <TouchableOpacity
+                  style={styles.drawerItem}
+                  onPress={handleLogout}
+                >
+                  <MaterialCommunityIcons
+                    name="logout"
+                    size={22}
+                    color="#fff"
+                  />
+                  <Text style={styles.drawerItemText}>Logout</Text>
+                </TouchableOpacity>
+              ) : (
+                <>
+                  <TouchableOpacity
+                    style={styles.drawerItem}
+                    onPress={() => navigateTo("Login")}
+                  >
+                    <MaterialCommunityIcons
+                      name="login"
+                      size={22}
+                      color="#fff"
+                    />
+                    <Text style={styles.drawerItemText}>Login</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={styles.drawerItem}
+                    onPress={() => navigateTo("Register")}
+                  >
+                    <MaterialCommunityIcons
+                      name="account-plus"
+                      size={22}
+                      color="#fff"
+                    />
+                    <Text style={styles.drawerItemText}>Register</Text>
+                  </TouchableOpacity>
+                </>
+              )}
             </View>
 
             <View style={styles.drawerFooter}>
@@ -188,6 +243,12 @@ const styles = StyleSheet.create({
   drawerTitle: { color: "#e10600", fontSize: 20, fontWeight: "700" },
   drawerSubtitle: { color: "#bbb", fontSize: 12 },
   drawerItems: { paddingTop: 12 },
+  drawerAuthSection: {
+    borderTopWidth: 1,
+    borderTopColor: "#222",
+    marginTop: 12,
+    paddingTop: 12,
+  },
   drawerItem: {
     flexDirection: "row",
     alignItems: "center",

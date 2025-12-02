@@ -1,6 +1,8 @@
 export interface Driver {
   id: number;
   driverId: string;
+  name: string;
+  surname: string;
   imgUrl: string;
   teamId: string;
   nationality: string;
@@ -12,6 +14,7 @@ export interface Driver {
 export interface Team {
   id: number;
   teamId: string;
+  teamName: string;
   teamImgUrl: string;
   bolidImgUrl: string;
   createdAt: string;
