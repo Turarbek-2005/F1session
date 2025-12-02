@@ -7,18 +7,113 @@ import {
   ActivityIndicator,
   Image,
   Pressable,
-  SafeAreaView as RNSafeAreaView,
+  ScrollView,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useAppDispatch, useAppSelector } from "./hooks";
 import { fetchTeams, selectAllTeams, selectTeamsStatus } from "./teamsSlice";
 import { fetchDrivers, selectAllDrivers } from "./driversSlice";
 import { f1ApiService } from "./f1ApiService";
-import { AppBar, IconButton, Surface } from "@react-native-material/core";
+import { Surface } from "@react-native-material/core";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { RootState } from "./store";
+
+const TeamCard = ({ team, drivers, driversApi, teamsApi, navigation }: any) => {
+  const matchedTeam = teamsApi?.teams?.find(
+    (teamApi: any) => teamApi.teamId === team.teamId
+  );
+  const teamDrivers = drivers.filter((d: any) => d.teamId === team.teamId);
+
+  return (
+    <Pressable
+      onPress={() => navigation.navigate("TeamDetail", { teamId: team.id })}
+      style={({ pressed }) => [
+        styles.cardWrapper,
+        pressed && { opacity: 0.92, transform: [{ scale: 0.997 }] },
+      ]}
+    >
+      <Surface elevation={3} style={styles.card} pointerEvents="none">
+        <View style={styles.cardHeader}>
+          <Text style={styles.teamName}>
+            {String(matchedTeam?.teamName ?? team.teamId)}
+          </Text>
+
+          {team.teamImgUrl ? (
+            <View style={styles.teamLogoWrapper}>
+              <Image
+                source={{ uri: team.teamImgUrl }}
+                style={styles.teamLogo}
+                resizeMode="contain"
+              />
+            </View>
+          ) : (
+            <View style={styles.teamLogoWrapper}>
+              <MaterialCommunityIcons name="shield" size={28} color="#333" />
+            </View>
+          )}
+        </View>
+
+        {team.bolidImgUrl && (
+          <Image
+            source={{ uri: team.bolidImgUrl }}
+            style={styles.carImage}
+            resizeMode="contain"
+          />
+        )}
+
+        {teamDrivers.length > 0 && (
+          <View style={styles.driversContainer}>
+            <Text style={styles.driversLabel}>Drivers:</Text>
+            {teamDrivers.map((driver: any) => {
+              const matchedDriverApi = driversApi?.drivers?.find(
+                (da: any) => da.driverId === driver.driverId
+              );
+
+              return (
+                <Pressable
+                  key={driver.id}
+                  onPress={() =>
+                    navigation.navigate("DriverDetail", { driverId: driver.id })
+                  }
+                  style={({ pressed }) => [
+                    styles.driverRow,
+                    pressed && { opacity: 0.9 },
+                  ]}
+                >
+                  {driver.imgUrl ? (
+                    <View style={styles.driverThumbWrapper}>
+                      <Image
+                        source={{ uri: driver.imgUrl }}
+                        style={styles.driverThumbImage}
+                      />
+                    </View>
+                  ) : (
+                    <View style={styles.driverThumbWrapper}>
+                      <MaterialCommunityIcons
+                        name="account"
+                        size={20}
+                        color="#333"
+                      />
+                    </View>
+                  )}
+                  <Text style={styles.driverName}>
+                    {matchedDriverApi
+                      ? `${matchedDriverApi.name} ${matchedDriverApi.surname}`
+                      : String(driver.driverId)}
+                  </Text>
+                </Pressable>
+              );
+            })}
+          </View>
+        )}
+      </Surface>
+    </Pressable>
+  );
+};
 
 const TeamsScreen = ({ navigation }: any) => {
   const dispatch = useAppDispatch();
+  const { user } = useAppSelector((state: RootState) => state.auth);
   const teams = useAppSelector(selectAllTeams) || [];
   const drivers = useAppSelector(selectAllDrivers) || [];
   const status = useAppSelector(selectTeamsStatus);
@@ -70,105 +165,50 @@ const TeamsScreen = ({ navigation }: any) => {
     );
   }
 
-  const sortedTeams = Array.isArray(teams) ? [...teams].sort((a, b) => (a?.id ?? 0) - (b?.id ?? 0)) : [];
+  const favoriteTeam = user?.favoriteTeamId
+    ? teams.find((t) => t.teamId === user.favoriteTeamId)
+    : undefined;
+
+  const otherTeams = user?.favoriteTeamId
+    ? teams.filter((t) => t.teamId !== user.favoriteTeamId)
+    : teams;
+
+  const sortedTeams = Array.isArray(otherTeams)
+    ? [...otherTeams].sort((a, b) => (a?.id ?? 0) - (b?.id ?? 0))
+    : [];
 
   return (
-    <View style={styles.screen}>
-      
+    <ScrollView style={styles.screen}>
+      {favoriteTeam && (
+        <View>
+          <Text style={styles.sectionTitle}>Your Favorite Team</Text>
+          <TeamCard
+            team={favoriteTeam}
+            drivers={drivers}
+            driversApi={driversApi}
+            teamsApi={teamsApi}
+            navigation={navigation}
+          />
+        </View>
+      )}
 
+      <Text style={styles.sectionTitle}>All Teams</Text>
       <FlatList
         data={sortedTeams}
         keyExtractor={(item) => String(item?.id ?? Math.random())}
         contentContainerStyle={styles.listContent}
-        renderItem={({ item }) => {
-          const matchedTeam = teamsApi?.teams?.find(
-            (teamApi: any) => teamApi.teamId === item.teamId
-          );
-          const teamDrivers = drivers.filter((d) => d.teamId === item.teamId);
-
-          return (
-            <Pressable
-              onPress={() => navigation.navigate("TeamDetail", { teamId: item.id })}
-              style={({ pressed }) => [
-                styles.cardWrapper,
-                pressed && { opacity: 0.92, transform: [{ scale: 0.997 }] },
-              ]}
-            >
-              {/* Surface внутри Pressable — pointerEvents='none' чтобы не перехватывать нажатие */}
-              <Surface elevation={3} style={styles.card} pointerEvents="none">
-                <View style={styles.cardHeader}>
-                  <Text style={styles.teamName}>
-                    {String(matchedTeam?.teamName ?? item.teamId)}
-                  </Text>
-
-                  {item.teamImgUrl ? (
-                    <View style={styles.teamLogoWrapper}>
-                      <Image
-                        source={{ uri: item.teamImgUrl }}
-                        style={styles.teamLogo}
-                        resizeMode="contain"
-                      />
-                    </View>
-                  ) : (
-                    <View style={styles.teamLogoWrapper}>
-                      <MaterialCommunityIcons name="shield" size={28} color="#333" />
-                    </View>
-                  )}
-                </View>
-
-                {item.bolidImgUrl && (
-                  <Image
-                    source={{ uri: item.bolidImgUrl }}
-                    style={styles.carImage}
-                    resizeMode="contain"
-                  />
-                )}
-
-                {teamDrivers.length > 0 && (
-                  <View style={styles.driversContainer}>
-                    <Text style={styles.driversLabel}>Drivers:</Text>
-                    {teamDrivers.map((driver) => {
-                      const matchedDriverApi = driversApi?.drivers?.find(
-                        (da: any) => da.driverId === driver.driverId
-                      );
-
-                      return (
-                        <Pressable
-                          key={driver.id}
-                          onPress={() => navigation.navigate("DriverDetail", { driverId: driver.id })}
-                          style={({ pressed }) => [
-                            styles.driverRow,
-                            pressed && { opacity: 0.9 },
-                          ]}
-                        >
-                          {driver.imgUrl ? (
-                            <View style={styles.driverThumbWrapper}>
-                              <Image
-                                source={{ uri: driver.imgUrl }}
-                                style={styles.driverThumbImage}
-                              />
-                            </View>
-                          ) : (
-                            <View style={styles.driverThumbWrapper}>
-                              <MaterialCommunityIcons name="account" size={20} color="#333" />
-                            </View>
-                          )}
-                          <Text style={styles.driverName}>
-                            {matchedDriverApi
-                              ? `${matchedDriverApi.name} ${matchedDriverApi.surname}`
-                              : String(driver.driverId)}
-                          </Text>
-                        </Pressable>
-                      );
-                    })}
-                  </View>
-                )}
-              </Surface>
-            </Pressable>
-          );
-        }}
+        renderItem={({ item }) => (
+          <TeamCard
+            team={item}
+            drivers={drivers}
+            driversApi={driversApi}
+            teamsApi={teamsApi}
+            navigation={navigation}
+          />
+        )}
+        scrollEnabled={false}
       />
-    </View>
+    </ScrollView>
   );
 };
 
@@ -177,9 +217,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#0d0d0d",
   },
-  appbarTitle: {
+  sectionTitle: {
+    fontSize: 20,
+    fontWeight: "bold",
     color: "#fff",
-    fontWeight: "900",
+    margin: 16,
   },
   centerContainer: {
     flex: 1,
