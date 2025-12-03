@@ -142,7 +142,7 @@ const TeamsScreen = ({ navigation }: any) => {
     };
 
     fetchApiData();
-  }, [dispatch]);
+  }, [dispatch, user]);
 
   if (status === "loading" || loading) {
     return (

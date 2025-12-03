@@ -45,7 +45,16 @@ export class AuthService {
     const payload = { userId: user.id, username: user.username };
     const token = jwt.sign(payload, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
 
-    return { token, user: { id: user.id, username: user.username, email: user.email } };
+    return {
+      token,
+      user: {
+        id: user.id,
+        username: user.username,
+        email: user.email,
+        favoriteDriverId: user.favoriteDriverId,
+        favoriteTeamId: user.favoriteTeamId,
+      },
+    };
   }
 
   verifyToken(token: string) {

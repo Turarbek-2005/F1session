@@ -605,3 +605,56 @@
 {"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-12-02T16:49:42.063Z"}
 {"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-12-02T16:49:42.063Z"}
 {"level":"info","message":"Shutting down...","timestamp":"2025-12-02T16:51:33.046Z"}
+{"level":"info","message":"Server is running on port 4200","timestamp":"2025-12-03T06:58:07.784Z"}
+{"level":"info","message":"Shutting down...","timestamp":"2025-12-03T07:03:16.922Z"}
+{"level":"info","message":"Server is running on port 4200","timestamp":"2025-12-03T07:03:19.639Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-12-03T07:14:37.228Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-12-03T07:14:37.229Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-12-03T07:14:37.261Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-12-03T07:14:37.262Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers/piastri","timestamp":"2025-12-03T07:14:39.598Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers/piastri","timestamp":"2025-12-03T07:14:39.599Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-12-03T07:14:54.926Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-12-03T07:14:54.927Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-12-03T07:14:55.815Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-12-03T07:14:55.815Z"}
+{"clientVersion":"6.17.1","code":"P2022","level":"error","message":"Register error: \nInvalid `prisma.user.findUnique()` invocation in\nD:\\Downloads\\1125\\F1session\\backend\\src\\services\\auth.service.ts:12:45\n\n   9 \n  10 export class AuthService {\n  11   async register(data: RegisterDto) {\n→ 12     const existingEmail = await prisma.user.findUnique(\nThe column `User.favoriteDriverId` does not exist in the current database.","meta":{"column":"User.favoriteDriverId","modelName":"User"},"name":"PrismaClientKnownRequestError","stack":"PrismaClientKnownRequestError: \nInvalid `prisma.user.findUnique()` invocation in\nD:\\Downloads\\1125\\F1session\\backend\\src\\services\\auth.service.ts:12:45\n\n   9 \n  10 export class AuthService {\n  11   async register(data: RegisterDto) {\n→ 12     const existingEmail = await prisma.user.findUnique(\nThe column `User.favoriteDriverId` does not exist in the current database.\n    at ei.handleRequestError (D:\\Downloads\\1125\\F1session\\backend\\node_modules\\@prisma\\client\\src\\runtime\\RequestHandler.ts:228:13)\n    at ei.handleAndLogRequestError (D:\\Downloads\\1125\\F1session\\backend\\node_modules\\@prisma\\client\\src\\runtime\\RequestHandler.ts:174:12)\n    at ei.request (D:\\Downloads\\1125\\F1session\\backend\\node_modules\\@prisma\\client\\src\\runtime\\RequestHandler.ts:143:12)\n    at a (D:\\Downloads\\1125\\F1session\\backend\\node_modules\\@prisma\\client\\src\\runtime\\getPrismaClient.ts:833:24)\n    at AuthService.register (D:\\Downloads\\1125\\F1session\\backend\\src\\services\\auth.service.ts:12:27)\n    at register (D:\\Downloads\\1125\\F1session\\backend\\src\\controllers\\auth.controller.ts:13:18)","timestamp":"2025-12-03T07:15:51.929Z"}
+{"clientVersion":"6.17.1","code":"P2022","level":"error","message":"Register error: \nInvalid `prisma.user.findUnique()` invocation in\nD:\\Downloads\\1125\\F1session\\backend\\src\\services\\auth.service.ts:12:45\n\n   9 \n  10 export class AuthService {\n  11   async register(data: RegisterDto) {\n→ 12     const existingEmail = await prisma.user.findUnique(\nThe column `User.favoriteDriverId` does not exist in the current database.","meta":{"column":"User.favoriteDriverId","modelName":"User"},"name":"PrismaClientKnownRequestError","stack":"PrismaClientKnownRequestError: \nInvalid `prisma.user.findUnique()` invocation in\nD:\\Downloads\\1125\\F1session\\backend\\src\\services\\auth.service.ts:12:45\n\n   9 \n  10 export class AuthService {\n  11   async register(data: RegisterDto) {\n→ 12     const existingEmail = await prisma.user.findUnique(\nThe column `User.favoriteDriverId` does not exist in the current database.\n    at ei.handleRequestError (D:\\Downloads\\1125\\F1session\\backend\\node_modules\\@prisma\\client\\src\\runtime\\RequestHandler.ts:228:13)\n    at ei.handleAndLogRequestError (D:\\Downloads\\1125\\F1session\\backend\\node_modules\\@prisma\\client\\src\\runtime\\RequestHandler.ts:174:12)\n    at ei.request (D:\\Downloads\\1125\\F1session\\backend\\node_modules\\@prisma\\client\\src\\runtime\\RequestHandler.ts:143:12)\n    at a (D:\\Downloads\\1125\\F1session\\backend\\node_modules\\@prisma\\client\\src\\runtime\\getPrismaClient.ts:833:24)\n    at AuthService.register (D:\\Downloads\\1125\\F1session\\backend\\src\\services\\auth.service.ts:12:27)\n    at register (D:\\Downloads\\1125\\F1session\\backend\\src\\controllers\\auth.controller.ts:13:18)","timestamp":"2025-12-03T07:16:13.169Z"}
+{"level":"info","message":"Shutting down...","timestamp":"2025-12-03T07:16:56.270Z"}
+{"level":"info","message":"Server is running on port 4200","timestamp":"2025-12-03T07:38:48.615Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-12-03T07:38:50.920Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-12-03T07:38:50.920Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-12-03T07:38:50.952Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-12-03T07:38:50.952Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-12-03T07:38:55.619Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-12-03T07:38:55.620Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-12-03T07:38:55.785Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-12-03T07:38:55.786Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-12-03T07:40:04.638Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-12-03T07:40:04.639Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-12-03T07:40:04.642Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-12-03T07:40:04.643Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-12-03T07:40:06.870Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-12-03T07:40:06.870Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-12-03T07:40:06.871Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-12-03T07:40:06.872Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-12-03T07:40:10.167Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-12-03T07:40:10.168Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-12-03T07:40:10.170Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-12-03T07:40:10.170Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-12-03T07:40:13.362Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-12-03T07:40:13.363Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-12-03T07:40:13.364Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-12-03T07:40:13.365Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-12-03T07:40:15.762Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-12-03T07:40:15.763Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-12-03T07:40:15.764Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-12-03T07:40:15.764Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-12-03T07:40:24.023Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-12-03T07:40:24.024Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-12-03T07:40:24.025Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-12-03T07:40:24.026Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-12-03T07:40:33.522Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-12-03T07:40:33.522Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-12-03T07:40:33.524Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-12-03T07:40:33.524Z"}
