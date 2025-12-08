@@ -21,10 +21,10 @@ export class AuthService {
         email: data.email,
         username: data.username,
         password: hash,
-        favoriteDriverId: data.favoriteDriverId,
-        favoriteTeamId: data.favoriteTeamId,
+        favoriteDriversIds: data.favoriteDriversIds,
+        favoriteTeamsIds: data.favoriteTeamsIds,
       },
-      select: { id: true, email: true, username: true, createdAt: true, updatedAt: true },
+      select: { id: true, email: true, username: true,favoriteDriversIds:true, favoriteTeamsIds:true, createdAt: true, updatedAt: true },
     });
 
     return user;
@@ -45,19 +45,12 @@ export class AuthService {
     const payload = { userId: user.id, username: user.username };
     const token = jwt.sign(payload, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
 
-    return {
-      token,
-      user: {
-        id: user.id,
-        username: user.username,
-        email: user.email,
-        favoriteDriverId: user.favoriteDriverId,
-        favoriteTeamId: user.favoriteTeamId,
-      },
-    };
+    return { token, user: { id: user.id, username: user.username, email: user.email, favoriteDriversIds:user.favoriteDriversIds,  favoriteTeamsIds:user.favoriteTeamsIds } };
   }
 
   verifyToken(token: string) {
     return jwt.verify(token, JWT_SECRET) as { userId: number; username: string; iat?: number; exp?: number };
   }
+
+  
 }
