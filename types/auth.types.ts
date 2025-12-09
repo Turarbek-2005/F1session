@@ -4,6 +4,9 @@ export interface UserInfo {
   username: string;
   favoriteDriverId?: string | null;
   favoriteTeamId?: string | null;
+  // new array-based favorites (backend returns these)
+  favoriteDriversIds?: string[];
+  favoriteTeamsIds?: string[];
 }
 
 export interface AuthState {

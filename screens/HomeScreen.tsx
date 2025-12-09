@@ -26,6 +26,8 @@ type RootStackParamList = {
   Teams: undefined;
   Login: undefined;
   Register: undefined;
+  Standings: undefined;
+  Settings: undefined;
 };
 
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, "Home">;
@@ -44,6 +46,9 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
   const links: { name: string; screen: keyof RootStackParamList; icon: MCI }[] = [
     { name: "Drivers", screen: "Drivers", icon: "car" },
     { name: "Teams", screen: "Teams", icon: "flag-checkered" },
+    { name: "Races", screen: "Races", icon: "calendar" },
+    { name: "Standings", screen: "Standings", icon: "trophy" },
+    { name: "Settings", screen: "Settings", icon: "cog" },
   ];
 
   const toggleMenu = () => setMenuVisible((v) => !v);

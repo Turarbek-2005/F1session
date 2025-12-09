@@ -49,7 +49,7 @@ export const loadTokenFromStorage = createAsyncThunk(
 
 export const registerUser = createAsyncThunk<
   { user: UserInfo },
-  { username: string; email: string; password: string, favoriteDriverId?: string; favoriteTeamId?: string },
+  { username: string; email: string; password: string, favoriteDriversIds?: string[]; favoriteTeamsIds?: string[] },
   { rejectValue: string }
 >("auth/register", async (payload, { rejectWithValue }) => {
   try {
@@ -108,11 +108,34 @@ export const fetchMe = createAsyncThunk<
   }
 });
 
+export const updateUser = createAsyncThunk<
+  { user: UserInfo },
+  { username?: string; email?: string, password?: string, favoriteDriversIds?: string[]; favoriteTeamsIds?: string[] },
+  { state: { auth: AuthState }; rejectValue: string }
+>("auth/updateUser", async (payload, { getState, rejectWithValue }) => {
+  try {
+    const token = getState().auth.token ?? await loadToken();
+    if (!token) return rejectWithValue("Unauthorized");
+
+    const res = await axiosClient.patch("/user/me", payload, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    const data = res.data;
+    return { user: data as UserInfo };
+  } catch (err: any) {
+    const msg = extractAxiosErrorMessage(err);
+    if (err?.response?.status === 401) await saveToken(null);
+    return rejectWithValue(msg);
+  }
+});
+
 const initialState: AuthState = {
   token: null,
   user: null,
   status: "idle",
   error: null,
+  lastUpdated: null
 };
 
 const authSlice = createSlice({
@@ -178,6 +201,25 @@ const authSlice = createSlice({
     builder.addCase(fetchMe.rejected, (state, action) => {
       state.status = "failed";
       state.error = action.payload ?? action.error.message ?? "Fetch user failed";
+      if (action.payload && (action.payload.toLowerCase().includes("unauthorized") || action.payload.toLowerCase().includes("no token"))) {
+        state.token = null;
+        state.user = null;
+        saveToken(null);
+      }
+    });
+
+    builder.addCase(updateUser.pending, (state) => {
+      state.status = "loading";
+      state.error = null;
+    });
+    builder.addCase(updateUser.fulfilled, (state, action) => {
+      state.status = "succeeded";
+      state.user = action.payload.user;
+      state.error = null;
+    });
+    builder.addCase(updateUser.rejected, (state, action) => {
+      state.status = "failed";
+      state.error = action.payload ?? action.error.message ?? "Update user failed";
       if (action.payload && action.payload.toLowerCase().includes("unauthorized")) {
         state.token = null;
         state.user = null;

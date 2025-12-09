@@ -165,12 +165,16 @@ const TeamsScreen = ({ navigation }: any) => {
     );
   }
 
-  const favoriteTeam = user?.favoriteTeamId
-    ? teams.find((t) => t.teamId === user.favoriteTeamId)
-    : undefined;
+  // support multiple favorite teams by favoriteTeamsIds or legacy favoriteTeamId
+  const favoriteTeamsIds: string[] | undefined = (user as any)?.favoriteTeamsIds ||
+    ((user as any)?.favoriteTeamId ? [(user as any).favoriteTeamId] : undefined);
 
-  const otherTeams = user?.favoriteTeamId
-    ? teams.filter((t) => t.teamId !== user.favoriteTeamId)
+  const favoriteTeams = Array.isArray(favoriteTeamsIds)
+    ? teams.filter((t) => favoriteTeamsIds.includes(t.teamId))
+    : [];
+
+  const otherTeams = Array.isArray(favoriteTeamsIds)
+    ? teams.filter((t) => !favoriteTeamsIds.includes(t.teamId))
     : teams;
 
   const sortedTeams = Array.isArray(otherTeams)
@@ -179,16 +183,19 @@ const TeamsScreen = ({ navigation }: any) => {
 
   return (
     <ScrollView style={styles.screen}>
-      {favoriteTeam && (
+      {favoriteTeams.length > 0 && (
         <View>
-          <Text style={styles.sectionTitle}>Your Favorite Team</Text>
-          <TeamCard
-            team={favoriteTeam}
-            drivers={drivers}
-            driversApi={driversApi}
-            teamsApi={teamsApi}
-            navigation={navigation}
-          />
+          <Text style={styles.sectionTitle}>Your Favorite Teams</Text>
+          {favoriteTeams.map((ft) => (
+            <TeamCard
+              key={ft.id}
+              team={ft}
+              drivers={drivers}
+              driversApi={driversApi}
+              teamsApi={teamsApi}
+              navigation={navigation}
+            />
+          ))}
         </View>
       )}
 

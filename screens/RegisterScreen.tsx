@@ -11,7 +11,7 @@ import {
   Platform,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { Picker } from "@react-native-picker/picker";
+
 import { AppDispatch, RootState } from "./store";
 import { registerUser } from "./authSlice";
 import { f1ApiService } from "./f1ApiService";
@@ -28,8 +28,8 @@ const RegisterScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
-  const [favoriteDriverId, setFavoriteDriverId] = useState<string | undefined>();
-  const [favoriteTeamId, setFavoriteTeamId] = useState<string | undefined>();
+  const [favoriteDriversIds, setFavoriteDriversIds] = useState<string[]>([]);
+  const [favoriteTeamsIds, setFavoriteTeamsIds] = useState<string[]>([]);
 
   const [drivers, setDrivers] = useState<Driver[]>([]);
   const [teams, setTeams] = useState<Team[]>([]);
@@ -56,8 +56,8 @@ const RegisterScreen = () => {
     if (!emailRe.test(email)) return "Invalid email address.";
     if (password.length < 6) return "Password must be at least 6 characters.";
     if (password !== confirm) return "Passwords do not match.";
-    if (!favoriteDriverId) return "Please select a favorite driver.";
-    if (!favoriteTeamId) return "Please select a favorite team.";
+    if (favoriteDriversIds.length === 0) return "Please select at least one favorite driver.";
+    if (favoriteTeamsIds.length === 0) return "Please select at least one favorite team.";
     return null;
   };
 
@@ -73,8 +73,8 @@ const RegisterScreen = () => {
         username: username.trim(),
         email: email.trim(),
         password,
-        favoriteDriverId,
-        favoriteTeamId,
+        favoriteDriversIds: favoriteDriversIds.length ? favoriteDriversIds : undefined,
+        favoriteTeamsIds: favoriteTeamsIds.length ? favoriteTeamsIds : undefined,
       })
     );
 
@@ -138,44 +138,46 @@ const RegisterScreen = () => {
           keyboardAppearance="dark"
         />
 
-        <Text style={styles.label}>Favorite Driver</Text>
-        <View style={styles.pickerContainer}>
-          <Picker
-            selectedValue={favoriteDriverId}
-            onValueChange={(itemValue) => setFavoriteDriverId(itemValue)}
-            style={styles.picker}
-            itemStyle={styles.pickerItem}
-          >
-            <Picker.Item label="Select a driver..." value={undefined} color="#888" />
-            {drivers.map((driver) => (
-              <Picker.Item
+        <Text style={styles.label}>Select your favorite drivers</Text>
+        <View style={[styles.pickerContainer, { padding: 4 }]}>
+          {drivers.map((driver) => {
+            const selected = favoriteDriversIds.includes(driver.driverId);
+            return (
+              <TouchableOpacity
                 key={driver.driverId}
-                label={`${driver.name} ${driver.surname}`}
-                value={driver.driverId}
-                color={Platform.OS === 'ios' ? '#fff' : undefined}
-              />
-            ))}
-          </Picker>
+                onPress={() => {
+                  setFavoriteDriversIds((prev) =>
+                    prev.includes(driver.driverId) ? prev.filter((x) => x !== driver.driverId) : [...prev, driver.driverId]
+                  );
+                }}
+                style={{ padding: 12, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', borderBottomWidth: 1, borderBottomColor: '#232323' }}
+              >
+                <Text style={{ color: '#fff' }}>{`${driver.name} ${driver.surname}`}</Text>
+                <Text style={{ color: selected ? '#e10600' : '#888' }}>{selected ? 'Selected' : ''}</Text>
+              </TouchableOpacity>
+            );
+          })}
         </View>
 
-        <Text style={styles.label}>Favorite Team</Text>
-        <View style={styles.pickerContainer}>
-          <Picker
-            selectedValue={favoriteTeamId}
-            onValueChange={(itemValue) => setFavoriteTeamId(itemValue)}
-            style={styles.picker}
-            itemStyle={styles.pickerItem}
-          >
-            <Picker.Item label="Select a team..." value={undefined} color="#888" />
-            {teams.map((team) => (
-              <Picker.Item
+        <Text style={styles.label}>Select your favorite teams</Text>
+        <View style={[styles.pickerContainer, { padding: 4 }]}>
+          {teams.map((team) => {
+            const selected = favoriteTeamsIds.includes(team.teamId);
+            return (
+              <TouchableOpacity
                 key={team.teamId}
-                label={team.teamName}
-                value={team.teamId}
-                color={Platform.OS === 'ios' ? '#fff' : undefined}
-              />
-            ))}
-          </Picker>
+                onPress={() => {
+                  setFavoriteTeamsIds((prev) =>
+                    prev.includes(team.teamId) ? prev.filter((x) => x !== team.teamId) : [...prev, team.teamId]
+                  );
+                }}
+                style={{ padding: 12, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', borderBottomWidth: 1, borderBottomColor: '#232323' }}
+              >
+                <Text style={{ color: '#fff' }}>{team.teamName}</Text>
+                <Text style={{ color: selected ? '#e10600' : '#888' }}>{selected ? 'Selected' : ''}</Text>
+              </TouchableOpacity>
+            );
+          })}
         </View>
 
         <TouchableOpacity

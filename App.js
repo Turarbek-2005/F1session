@@ -11,6 +11,9 @@ import DriverDetailScreen from "./screens/DriverDetailScreen";
 import TeamDetailScreen from "./screens/TeamDetailScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 import LoginScreen from "./screens/LoginScreen";
+import SettingsScreen from "./screens/SettingsScreen";
+import StandingsScreen from "./screens/StandingsScreen";
+import RacesScreen from "./screens/RacesScreen";
 import { loadTokenFromStorage } from "./screens/authSlice";
 import { AppDispatch } from "./screens/store";
 
@@ -71,6 +74,21 @@ function AppNavigator() {
           name="TeamDetail"
           component={TeamDetailScreen}
           options={{ title: "Team Details" }}
+        />
+        <Stack.Screen
+          name="Standings"
+          component={StandingsScreen}
+          options={{ title: "Standings" }}
+        />
+        <Stack.Screen
+          name="Races"
+          component={RacesScreen}
+          options={{ title: "Races" }}
+        />
+        <Stack.Screen
+          name="Settings"
+          component={SettingsScreen}
+          options={{ title: "Settings" }}
         />
       </Stack.Navigator>
     </NavigationContainer>

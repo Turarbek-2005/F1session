@@ -156,12 +156,16 @@ const DriversScreen = ({ navigation }: any) => {
     );
   }
 
-  const favoriteDriver = user?.favoriteDriverId
-    ? drivers.find((d) => d.driverId === user.favoriteDriverId)
-    : undefined;
+  // support multiple favorite drivers if provided as favoriteDriversIds
+  const favoriteDriversIds: string[] | undefined = (user as any)?.favoriteDriversIds ||
+    ((user as any)?.favoriteDriverId ? [(user as any).favoriteDriverId] : undefined);
 
-  const otherDrivers = user?.favoriteDriverId
-    ? drivers.filter((d) => d.driverId !== user.favoriteDriverId)
+  const favoriteDrivers = Array.isArray(favoriteDriversIds)
+    ? drivers.filter((d) => favoriteDriversIds.includes(d.driverId))
+    : [];
+
+  const otherDrivers = Array.isArray(favoriteDriversIds)
+    ? drivers.filter((d) => !favoriteDriversIds.includes(d.driverId))
     : drivers;
 
   const sortedDrivers = Array.isArray(otherDrivers)
@@ -170,16 +174,19 @@ const DriversScreen = ({ navigation }: any) => {
 
   return (
     <ScrollView style={styles.container}>
-      {favoriteDriver && (
+      {favoriteDrivers.length > 0 && (
         <View>
-          <Text style={styles.sectionTitle}>Your Favorite Driver</Text>
+          <Text style={styles.sectionTitle}>Your Favorite Drivers</Text>
           <View style={styles.favoriteDriverContainer}>
-            <DriverCard
-              driver={favoriteDriver}
-              driversApi={driversApi}
-              teamsApi={teamsApi}
-              navigation={navigation}
-            />
+            {favoriteDrivers.map((fd) => (
+              <DriverCard
+                key={fd.id}
+                driver={fd}
+                driversApi={driversApi}
+                teamsApi={teamsApi}
+                navigation={navigation}
+              />
+            ))}
           </View>
         </View>
       )}
