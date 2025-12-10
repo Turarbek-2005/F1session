@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
   label: { fontSize: 14, marginTop: 8, marginBottom: 4, color: "#bbb" },
   input: { borderWidth: 1, borderColor: "#222", padding: 8, borderRadius: 6, color: "#fff", backgroundColor: "#111" },
   sectionTitle: { fontSize: 16, marginTop: 12, marginBottom: 6, fontWeight: "500", color: "#fff" },
-  box: { borderWidth: 1, borderColor: "#222", padding: 8, borderRadius: 6, maxHeight: 220 },
+  box: { borderWidth: 1, borderColor: "#222", padding: 8, borderRadius: 6},
   row: { flexDirection: "row", alignItems: "center", paddingVertical: 6 },
   itemText: { marginLeft: 8, color: "#fff" },
   error: { color: "#f87171", marginVertical: 8 },

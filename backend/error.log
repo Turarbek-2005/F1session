@@ -23,3 +23,8 @@
 {"level":"error","message":" [F1 API] current/next — Request failed with status code 404","timestamp":"2025-12-09T17:21:03.244Z"}
 {"level":"error","message":" [F1 API] current/next — Request failed with status code 404","timestamp":"2025-12-09T17:21:06.960Z"}
 {"level":"error","message":" [F1 API] current/next — Request failed with status code 404","timestamp":"2025-12-09T17:21:52.546Z"}
+{"level":"error","message":" [F1 API] current/next — Request failed with status code 404","timestamp":"2025-12-10T06:10:17.744Z"}
+{"level":"error","message":" [F1 API] current/drivers/albon — timeout of 5000ms exceeded","timestamp":"2025-12-10T06:12:30.094Z"}
+{"level":"error","message":" [F1 API] current/drivers/alonso — timeout of 5000ms exceeded","timestamp":"2025-12-10T06:12:32.939Z"}
+{"level":"error","message":" [F1 API] current/next — Request failed with status code 404","timestamp":"2025-12-10T06:13:05.467Z"}
+{"level":"error","message":" [F1 API] current/next — Request failed with status code 404","timestamp":"2025-12-10T06:41:50.430Z"}

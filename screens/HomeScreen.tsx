@@ -43,13 +43,14 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
 
   type MCI = ComponentProps<typeof MaterialCommunityIcons>["name"];
 
-  const links: { name: string; screen: keyof RootStackParamList; icon: MCI }[] = [
-    { name: "Drivers", screen: "Drivers", icon: "car" },
-    { name: "Teams", screen: "Teams", icon: "flag-checkered" },
-    { name: "Races", screen: "Races", icon: "calendar" },
-    { name: "Standings", screen: "Standings", icon: "trophy" },
-    { name: "Settings", screen: "Settings", icon: "cog" },
-  ];
+  const links: { name: string; screen: keyof RootStackParamList; icon: MCI }[] =
+    [
+      { name: "Drivers", screen: "Drivers", icon: "car" },
+      { name: "Teams", screen: "Teams", icon: "flag-checkered" },
+      { name: "Races", screen: "Races", icon: "calendar" },
+      { name: "Standings", screen: "Standings", icon: "trophy" },
+      { name: "Settings", screen: "Settings", icon: "cog" },
+    ];
 
   const toggleMenu = () => setMenuVisible((v) => !v);
 
@@ -300,7 +301,14 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     justifyContent: "center",
   },
-  card: { width: 160, margin: 8, borderRadius: 12 },
+
+  card: {
+    width: "50%", // две колонки
+    maxWidth: 160, // чтобы не становились слишком большими
+    margin: 8,
+    borderRadius: 12,
+  },
+
   cardSurface: {
     borderRadius: 12,
     backgroundColor: "#111",
