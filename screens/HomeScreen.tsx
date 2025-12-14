@@ -24,6 +24,8 @@ type RootStackParamList = {
   Home: undefined;
   Drivers: undefined;
   Teams: undefined;
+  Races: undefined;
+  Results: undefined;
   Login: undefined;
   Register: undefined;
   Standings: undefined;
@@ -48,6 +50,7 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
       { name: "Drivers", screen: "Drivers", icon: "car" },
       { name: "Teams", screen: "Teams", icon: "flag-checkered" },
       { name: "Races", screen: "Races", icon: "calendar" },
+      { name: "Results", screen: "Results", icon: "file-document" },
       { name: "Standings", screen: "Standings", icon: "trophy" },
       { name: "Settings", screen: "Settings", icon: "cog" },
     ];

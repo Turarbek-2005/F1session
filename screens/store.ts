@@ -2,12 +2,14 @@ import { configureStore } from "@reduxjs/toolkit";
 import driversReducer from "./driversSlice";
 import teamsReducer from "./teamsSlice";
 import authReducer from "./authSlice";
+import resultsReducer from "./resultsSlice";
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
     drivers: driversReducer,
     teams: teamsReducer,
+    results: resultsReducer,
   },
 });
 

@@ -57,4 +57,18 @@ export const f1ApiService = {
       return null;
     }
   },
+
+  // Generic session results for a year/round/session (session examples: fp1, fp2, fp3, qualy, race, sprint/qualy, sprint/race)
+  getYearRoundSession: async (year: string | number, round: string | number, session: string) => {
+    // map some frontend session names to API paths
+    const mapSession = (s: string) => {
+      if (s === "sprintQualyfying" || s === "sprintQualifying" || s === "sprintQualy") return "sprint/qualy";
+      if (s === "sprintRace") return "sprint/race";
+      if (s === "qualyfying" || s === "qualifying") return "qualy";
+      return s;
+    };
+    const path = mapSession(session);
+    const { data } = await axiosClient.get(`/f1api/${year}/${round}/${path}`);
+    return data;
+  },
 };

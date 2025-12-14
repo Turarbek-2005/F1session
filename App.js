@@ -14,6 +14,7 @@ import LoginScreen from "./screens/LoginScreen";
 import SettingsScreen from "./screens/SettingsScreen";
 import StandingsScreen from "./screens/StandingsScreen";
 import RacesScreen from "./screens/RacesScreen";
+import ResultsScreen from "./screens/ResultsScreen";
 import { loadTokenFromStorage } from "./screens/authSlice";
 import { AppDispatch } from "./screens/store";
 
@@ -84,6 +85,11 @@ function AppNavigator() {
           name="Races"
           component={RacesScreen}
           options={{ title: "Races" }}
+        />
+        <Stack.Screen
+          name="Results"
+          component={ResultsScreen}
+          options={{ title: "Results" }}
         />
         <Stack.Screen
           name="Settings"

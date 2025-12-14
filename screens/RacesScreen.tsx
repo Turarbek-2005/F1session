@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
+  Image,
   ScrollView,
   StyleSheet,
   ActivityIndicator,
@@ -168,7 +169,7 @@ export default function RacesScreen({ navigation }: any) {
       <View style={styles.listContainer}>
         {races?.races?.map((race: any) => (
           <View key={race?.raceId} style={styles.raceRow}>
-            <View style={styles.raceLeft}>
+            <Pressable style={styles.raceLeft} onPress={() => navigation.navigate('Results', { year: year, round: race?.round?.toString(), session: 'race', date: race?.schedule?.race?.date })}>
               <Text style={styles.raceRound}>Round {race?.round}</Text>
               <Text style={styles.raceName}>
                 {race?.circuit.country}{" "}
@@ -177,7 +178,7 @@ export default function RacesScreen({ navigation }: any) {
                   : race?.circuit.city}
               </Text>
               <Text style={styles.raceSmall}>{race?.raceName}</Text>
-            </View>
+            </Pressable>
             <View style={styles.raceRight}>
               {race?.winner ? (
                 (() => {
@@ -192,9 +193,20 @@ export default function RacesScreen({ navigation }: any) {
                         })
                       }
                     >
-                      <Text style={styles.winner}>
-                        Winner: {race?.winner?.name} {race?.winner?.surname}
-                      </Text>
+                      <View style={styles.winnerRow}>
+                        {winner?.imgUrl ? (
+                          <View style={styles.winnerImageWrapper}>
+                            <Image
+                              source={{ uri: winner.imgUrl }}
+                              style={styles.winnerImageInner}
+                              resizeMode="cover"
+                            />
+                          </View>
+                        ) : null}
+                        <Text style={styles.winner}>
+                          Winner: {race?.winner?.name} {race?.winner?.surname}
+                        </Text>
+                      </View>
                     </TouchableOpacity>
                   ) : (
                     <Text style={styles.winner}>Winner</Text>
@@ -261,5 +273,9 @@ const styles = StyleSheet.create({
   raceName: { color: "#fff", fontSize: 16, fontWeight: "700" },
   raceSmall: { color: "#ccc", marginTop: 6 },
   raceDate: { color: "#ccc" },
+  winnerRow: { flexDirection: "row", alignItems: "center" },
+  winnerImageWrapper: { width: 36, height: 36, borderRadius: 12, marginRight: 8, overflow: 'hidden' },
+  winnerImageInner: { width: 50, height: 150, resizeMode: "cover",   position: "absolute",
+  top: 0,    left: -13},
   winner: { color: "#86efac", fontWeight: "700" },
 });
