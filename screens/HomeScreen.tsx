@@ -55,6 +55,8 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
       { name: "Settings", screen: "Settings", icon: "cog" },
     ];
 
+  const visibleLinks = user ? links : links.filter(l => l.name !== "Settings");
+
   const toggleMenu = () => setMenuVisible((v) => !v);
 
   const navigateTo = (screen: keyof RootStackParamList) => {
@@ -118,7 +120,7 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
                 <Text style={styles.drawerItemText}>Home</Text>
               </TouchableOpacity>
 
-              {links.map((link) => (
+              {visibleLinks.map((link) => (
                 <TouchableOpacity
                   key={link.name}
                   style={styles.drawerItem}
@@ -194,7 +196,7 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
         </Text>
 
         <View style={styles.gridContainer}>
-          {links.map((link) => (
+          {visibleLinks.map((link) => (
             <Pressable
               key={link.name}
               onPress={() => navigation.navigate(link.screen)}

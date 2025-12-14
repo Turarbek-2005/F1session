@@ -119,6 +119,10 @@ router.get("/standings/drivers", (req: Request, res: Response) =>
 router.get("/races", (req: Request, res: Response) =>
   fetchFromF1Api("current", res, "current")
 );
+router.get("/races/:year", (req: Request, res: Response) => {
+  const { year } = req.params;
+  return fetchFromF1Api(`races/${year}`, res, `races/${year}`);
+});
 router.get("/races/last", (req: Request, res: Response) =>
   fetchFromF1Api("current/last", res, "current/last")
 );

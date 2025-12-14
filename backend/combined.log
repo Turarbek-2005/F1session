@@ -2302,3 +2302,50 @@
 {"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-12-14T18:39:27.669Z"}
 {"level":"info","message":"Shutting down...","timestamp":"2025-12-14T18:39:31.648Z"}
 {"level":"info","message":"Server is running on port 4200","timestamp":"2025-12-14T19:06:14.302Z"}
+{"level":"info","message":"Server is running on port 4200","timestamp":"2025-12-14T22:16:32.203Z"}
+{"level":"info","message":"Shutting down...","timestamp":"2025-12-14T22:16:48.416Z"}
+{"level":"info","message":"Server is running on port 4200","timestamp":"2025-12-14T22:16:52.256Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: races/2025","timestamp":"2025-12-14T22:17:14.062Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/races/2025","timestamp":"2025-12-14T22:17:14.062Z"}
+{"level":"error","message":" [F1 API] races/2025 — Request failed with status code 404","timestamp":"2025-12-14T22:17:14.724Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: races/2025","timestamp":"2025-12-14T22:17:17.891Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/races/2025","timestamp":"2025-12-14T22:17:17.891Z"}
+{"level":"error","message":" [F1 API] races/2025 — Request failed with status code 404","timestamp":"2025-12-14T22:17:18.373Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: races/2025","timestamp":"2025-12-14T22:17:20.788Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/races/2025","timestamp":"2025-12-14T22:17:20.788Z"}
+{"level":"error","message":" [F1 API] races/2025 — Request failed with status code 404","timestamp":"2025-12-14T22:17:21.129Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: races/2025","timestamp":"2025-12-14T22:17:22.905Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/races/2025","timestamp":"2025-12-14T22:17:22.905Z"}
+{"level":"error","message":" [F1 API] races/2025 — Request failed with status code 404","timestamp":"2025-12-14T22:17:23.234Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: races/2025","timestamp":"2025-12-14T22:17:25.139Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/races/2025","timestamp":"2025-12-14T22:17:25.139Z"}
+{"level":"error","message":" [F1 API] races/2025 — Request failed with status code 404","timestamp":"2025-12-14T22:17:25.480Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-12-14T22:17:30.035Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-12-14T22:17:30.035Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-12-14T22:17:30.038Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-12-14T22:17:30.038Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: races/2025","timestamp":"2025-12-14T22:17:31.828Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/races/2025","timestamp":"2025-12-14T22:17:31.829Z"}
+{"level":"error","message":" [F1 API] races/2025 — Request failed with status code 404","timestamp":"2025-12-14T22:17:32.173Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: races/2025","timestamp":"2025-12-14T22:17:37.348Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/races/2025","timestamp":"2025-12-14T22:17:37.349Z"}
+{"level":"error","message":" [F1 API] races/2025 — Request failed with status code 404","timestamp":"2025-12-14T22:17:37.866Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: races/2025","timestamp":"2025-12-14T22:17:44.047Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/races/2025","timestamp":"2025-12-14T22:17:44.048Z"}
+{"level":"error","message":" [F1 API] races/2025 — Request failed with status code 404","timestamp":"2025-12-14T22:17:44.567Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: races/2025","timestamp":"2025-12-14T22:17:50.232Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/races/2025","timestamp":"2025-12-14T22:17:50.233Z"}
+{"level":"error","message":" [F1 API] races/2025 — Request failed with status code 404","timestamp":"2025-12-14T22:17:50.756Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: races/2025","timestamp":"2025-12-14T22:17:58.288Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/races/2025","timestamp":"2025-12-14T22:17:58.288Z"}
+{"level":"error","message":" [F1 API] races/2025 — Request failed with status code 404","timestamp":"2025-12-14T22:17:58.808Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: races/2025","timestamp":"2025-12-14T22:18:04.335Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/races/2025","timestamp":"2025-12-14T22:18:04.335Z"}
+{"level":"error","message":" [F1 API] races/2025 — Request failed with status code 404","timestamp":"2025-12-14T22:18:05.072Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: races/2025","timestamp":"2025-12-14T22:18:35.075Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/races/2025","timestamp":"2025-12-14T22:18:35.075Z"}
+{"level":"error","message":" [F1 API] races/2025 — Request failed with status code 404","timestamp":"2025-12-14T22:18:35.656Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: races/2025","timestamp":"2025-12-14T22:18:50.086Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/races/2025","timestamp":"2025-12-14T22:18:50.086Z"}
+{"level":"error","message":" [F1 API] races/2025 — Request failed with status code 404","timestamp":"2025-12-14T22:18:50.625Z"}
+{"level":"info","message":"Shutting down...","timestamp":"2025-12-14T22:19:32.864Z"}

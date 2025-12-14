@@ -1,6 +1,6 @@
 import "react-native-gesture-handler";
 import React, { useEffect } from "react";
-import { Provider, useDispatch } from "react-redux";
+import { Provider, useDispatch, useSelector } from "react-redux";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { store } from "./screens/store";
@@ -16,12 +16,14 @@ import StandingsScreen from "./screens/StandingsScreen";
 import RacesScreen from "./screens/RacesScreen";
 import ResultsScreen from "./screens/ResultsScreen";
 import { loadTokenFromStorage } from "./screens/authSlice";
-import { AppDispatch } from "./screens/store";
+
 
 const Stack = createStackNavigator();
 
 function AppNavigator() {
-  const dispatch: AppDispatch = useDispatch();
+  const dispatch = useDispatch();
+
+  const user = useSelector((state) => state.auth.user);
 
   useEffect(() => {
     dispatch(loadTokenFromStorage());
@@ -91,11 +93,13 @@ function AppNavigator() {
           component={ResultsScreen}
           options={{ title: "Results" }}
         />
-        <Stack.Screen
-          name="Settings"
-          component={SettingsScreen}
-          options={{ title: "Settings" }}
-        />
+        {user && (
+          <Stack.Screen
+            name="Settings"
+            component={SettingsScreen}
+            options={{ title: "Settings" }}
+          />
+        )}
       </Stack.Navigator>
     </NavigationContainer>
   );
