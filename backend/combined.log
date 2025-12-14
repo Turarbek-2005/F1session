@@ -2353,3 +2353,97 @@
 {"level":"info","message":"[F1 API] Fetching data from path: races/2025","timestamp":"2025-12-14T22:25:02.762Z"}
 {"level":"info","message":"[F1 API] request -> https://f1api.dev/api/races/2025","timestamp":"2025-12-14T22:25:02.763Z"}
 {"level":"error","message":" [F1 API] races/2025 — Request failed with status code 404","timestamp":"2025-12-14T22:25:03.592Z"}
+{"level":"info","message":"Server is running on port 4200","timestamp":"2025-12-14T22:26:45.702Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: 2025","timestamp":"2025-12-14T22:27:18.133Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/2025","timestamp":"2025-12-14T22:27:18.134Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: 2025/22/race","timestamp":"2025-12-14T22:27:22.074Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/2025/22/race","timestamp":"2025-12-14T22:27:22.075Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: 2025","timestamp":"2025-12-14T22:27:23.443Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/2025","timestamp":"2025-12-14T22:27:23.444Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/last","timestamp":"2025-12-14T22:27:23.575Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/last","timestamp":"2025-12-14T22:27:23.576Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/next","timestamp":"2025-12-14T22:27:23.577Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/next","timestamp":"2025-12-14T22:27:23.578Z"}
+{"level":"error","message":" [F1 API] current/next — Request failed with status code 404","timestamp":"2025-12-14T22:27:24.266Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: 2025","timestamp":"2025-12-14T22:27:25.668Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/2025","timestamp":"2025-12-14T22:27:25.669Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: 2025/1/race","timestamp":"2025-12-14T22:27:25.670Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/2025/1/race","timestamp":"2025-12-14T22:27:25.671Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: 2025","timestamp":"2025-12-14T22:33:21.651Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/2025","timestamp":"2025-12-14T22:33:21.651Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/last","timestamp":"2025-12-14T22:33:22.547Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/last","timestamp":"2025-12-14T22:33:22.548Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/next","timestamp":"2025-12-14T22:33:22.549Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/next","timestamp":"2025-12-14T22:33:22.550Z"}
+{"level":"error","message":" [F1 API] current/next — Request failed with status code 404","timestamp":"2025-12-14T22:33:23.286Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: 2025","timestamp":"2025-12-14T22:33:24.452Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/2025","timestamp":"2025-12-14T22:33:24.453Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: 2025/1/race","timestamp":"2025-12-14T22:33:24.454Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/2025/1/race","timestamp":"2025-12-14T22:33:24.454Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers/norris","timestamp":"2025-12-14T22:33:26.979Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers/norris","timestamp":"2025-12-14T22:33:26.980Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers/norris","timestamp":"2025-12-14T22:33:31.582Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers/norris","timestamp":"2025-12-14T22:33:31.582Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers/norris","timestamp":"2025-12-14T22:33:34.714Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers/norris","timestamp":"2025-12-14T22:33:34.714Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers/norris","timestamp":"2025-12-14T22:33:42.780Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers/norris","timestamp":"2025-12-14T22:33:42.781Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers/norris","timestamp":"2025-12-14T22:33:51.601Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers/norris","timestamp":"2025-12-14T22:33:51.602Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers/max_verstappen","timestamp":"2025-12-14T22:34:43.128Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers/max_verstappen","timestamp":"2025-12-14T22:34:43.128Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: 2025","timestamp":"2025-12-14T22:35:23.658Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/2025","timestamp":"2025-12-14T22:35:23.658Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: 2025/1/race","timestamp":"2025-12-14T22:35:23.661Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/2025/1/race","timestamp":"2025-12-14T22:35:23.661Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers/norris","timestamp":"2025-12-14T22:35:28.699Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers/norris","timestamp":"2025-12-14T22:35:28.700Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: 2025","timestamp":"2025-12-14T22:36:21.698Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/2025","timestamp":"2025-12-14T22:36:21.699Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/last","timestamp":"2025-12-14T22:36:22.054Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/last","timestamp":"2025-12-14T22:36:22.054Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/next","timestamp":"2025-12-14T22:36:22.056Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/next","timestamp":"2025-12-14T22:36:22.057Z"}
+{"level":"error","message":" [F1 API] current/next — Request failed with status code 404","timestamp":"2025-12-14T22:36:22.709Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams","timestamp":"2025-12-14T22:37:05.585Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams","timestamp":"2025-12-14T22:37:05.586Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers","timestamp":"2025-12-14T22:37:05.589Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers","timestamp":"2025-12-14T22:37:05.590Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams/aston_martin","timestamp":"2025-12-14T22:37:07.989Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams/aston_martin","timestamp":"2025-12-14T22:37:07.989Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: 2025","timestamp":"2025-12-14T22:37:48.083Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/2025","timestamp":"2025-12-14T22:37:48.084Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/last","timestamp":"2025-12-14T22:37:48.418Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/last","timestamp":"2025-12-14T22:37:48.419Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/next","timestamp":"2025-12-14T22:37:48.420Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/next","timestamp":"2025-12-14T22:37:48.420Z"}
+{"level":"error","message":" [F1 API] current/next — Request failed with status code 404","timestamp":"2025-12-14T22:37:49.044Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: 2025/1/race","timestamp":"2025-12-14T22:37:50.476Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/2025/1/race","timestamp":"2025-12-14T22:37:50.477Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: 2025","timestamp":"2025-12-14T22:37:50.479Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/2025","timestamp":"2025-12-14T22:37:50.480Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers/norris","timestamp":"2025-12-14T22:38:08.154Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers/norris","timestamp":"2025-12-14T22:38:08.154Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: 2025","timestamp":"2025-12-14T22:38:24.444Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/2025","timestamp":"2025-12-14T22:38:24.445Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: 2025/1/race","timestamp":"2025-12-14T22:38:24.449Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/2025/1/race","timestamp":"2025-12-14T22:38:24.449Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams/mclaren","timestamp":"2025-12-14T22:38:27.471Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams/mclaren","timestamp":"2025-12-14T22:38:27.471Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers/norris","timestamp":"2025-12-14T22:38:29.839Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers/norris","timestamp":"2025-12-14T22:38:29.839Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams/mclaren","timestamp":"2025-12-14T22:38:31.453Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams/mclaren","timestamp":"2025-12-14T22:38:31.453Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers/norris","timestamp":"2025-12-14T22:38:33.255Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers/norris","timestamp":"2025-12-14T22:38:33.255Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams/mclaren","timestamp":"2025-12-14T22:38:34.453Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams/mclaren","timestamp":"2025-12-14T22:38:34.453Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams/mclaren","timestamp":"2025-12-14T22:38:39.511Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams/mclaren","timestamp":"2025-12-14T22:38:39.511Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/drivers/norris","timestamp":"2025-12-14T22:38:42.475Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/drivers/norris","timestamp":"2025-12-14T22:38:42.476Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams/mclaren","timestamp":"2025-12-14T22:38:44.059Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams/mclaren","timestamp":"2025-12-14T22:38:44.059Z"}
+{"level":"info","message":"[F1 API] Fetching data from path: current/teams/mclaren","timestamp":"2025-12-14T22:38:45.926Z"}
+{"level":"info","message":"[F1 API] request -> https://f1api.dev/api/current/teams/mclaren","timestamp":"2025-12-14T22:38:45.926Z"}
+{"level":"info","message":"Shutting down...","timestamp":"2025-12-14T22:38:52.522Z"}

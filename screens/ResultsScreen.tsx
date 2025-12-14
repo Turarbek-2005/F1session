@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, ScrollView, Pressable, ActivityIndicator, StyleSheet } from "react-native";
 import { useAppDispatch, useAppSelector } from "./hooks";
+import { selectAllDrivers } from "./driversSlice";
+import { selectAllTeams } from "./teamsSlice";
 import {
   fetchRacesYear,
   fetchYearRoundSession,
@@ -10,12 +12,14 @@ import {
   selectResultsSessionStatus,
 } from "./resultsSlice";
 
-export default function ResultsScreen({ route }: any) {
+export default function ResultsScreen({ route, navigation }: any) {
   const dispatch = useAppDispatch();
   const racesYear = useAppSelector(selectRacesYear);
   const sessionData = useAppSelector(selectSessionData);
   const status = useAppSelector(selectResultsStatus);
   const sessionStatus = useAppSelector(selectResultsSessionStatus);
+  const drivers = useAppSelector(selectAllDrivers);
+  const teams = useAppSelector(selectAllTeams);
 
   const routeParams = route?.params ?? {};
   const years = ["2025", "2024", "2023", "2022", "2021", "2020"];
@@ -114,10 +118,20 @@ export default function ResultsScreen({ route }: any) {
             <View key={res.driver?.driverId ?? res.fp1Id ?? idx} style={styles.resultRow}>
               <Text style={styles.pos}>{res.position ?? res.gridPosition ?? idx + 1}</Text>
               <View style={styles.resultInfo}>
-                <Text style={styles.driver}>
-                  {res.driver?.name} {res.driver?.surname}
-                </Text>
-                <Text style={styles.team}>{res.team?.teamName}</Text>
+                <Pressable onPress={() => {
+                  const found = drivers.find((d: any) => d.driverId === res.driver?.driverId);
+                  if (found) navigation.navigate("DriverDetail", { driverId: found.id });
+                }}>
+                  <Text style={styles.driver}>
+                    {res.driver?.name} {res.driver?.surname}
+                  </Text>
+                </Pressable>
+                <Pressable onPress={() => {
+                  const foundTeam = teams.find((t: any) => t.teamId === res.team.teamId);
+                  if (foundTeam) navigation.navigate("TeamDetail", { teamId: foundTeam?.id });
+                }}>
+                  <Text style={styles.team}>{res.team?.teamName}</Text>
+                </Pressable>
               </View>
               <Text style={styles.time}>{res.time ?? res.retired ?? "-"}</Text>
               <Text style={styles.points}>{res.points ?? ""}</Text>
