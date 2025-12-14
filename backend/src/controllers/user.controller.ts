@@ -59,8 +59,16 @@ export async function updateUser(req: Request, res: Response) {
     const data: any = {};
     if (email !== undefined) data.email = email;
     if (username !== undefined) data.username = username;
-    if (favoriteDriversIds !== undefined) data.favoriteDriversIds = favoriteDriversIds;
-    if (favoriteTeamsIds !== undefined) data.favoriteTeamsIds = favoriteTeamsIds;
+    if (favoriteDriversIds !== undefined) {
+      data.favoriteDriversIds = Array.isArray(favoriteDriversIds)
+        ? favoriteDriversIds.map((v: any) => String(v))
+        : [String(favoriteDriversIds)];
+    }
+    if (favoriteTeamsIds !== undefined) {
+      data.favoriteTeamsIds = Array.isArray(favoriteTeamsIds)
+        ? favoriteTeamsIds.map((v: any) => String(v))
+        : [String(favoriteTeamsIds)];
+    }
     if (password !== undefined) {
       const hash = await bcrypt.hash(password, 10);
       data.password = hash;

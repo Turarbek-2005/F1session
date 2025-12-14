@@ -9,18 +9,21 @@ import {
   Pressable,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useAppSelector } from "./hooks";
+import { useAppSelector, useAppDispatch } from "./hooks";
 import { selectAllTeams } from "./teamsSlice";
 import { selectAllDrivers } from "./driversSlice";
 import { f1ApiService } from "./f1ApiService";
 import { TeamDetailsResponse } from "./types";
 import { AppBar, IconButton, Surface, Button } from "@react-native-material/core";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { updateUser } from "./authSlice";
 
 const TeamDetailScreen = ({ route, navigation }: any) => {
   const { teamId } = route.params;
   const teams = useAppSelector(selectAllTeams);
   const drivers = useAppSelector(selectAllDrivers);
+  const dispatch = useAppDispatch();
+  const user = useAppSelector((state) => state.auth.user);
   const [teamDetails, setTeamDetails] = useState<TeamDetailsResponse | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -83,6 +86,20 @@ const TeamDetailScreen = ({ route, navigation }: any) => {
             </View>
           </View>
         </Surface>
+
+        <View style={{ paddingHorizontal: 16, marginTop: 8 }}>
+          <Button
+            title={(user?.favoriteTeamsIds?.includes(String(team.id)) || user?.favoriteTeamsIds?.includes(team.teamId)) ? "Remove favorite" : "Add favorite"}
+            color={(user?.favoriteTeamsIds?.includes(String(team.id)) || user?.favoriteTeamsIds?.includes(team.teamId)) ? "#999" : "#e10600"}
+            onPress={() => {
+              const current = user?.favoriteTeamsIds || [];
+              const isFav = current.includes(team.teamId) || current.includes(String(team.id));
+              const updated = isFav ? current.filter((id) => id !== team.teamId && id !== String(team.id)) : [...current, team.teamId];
+              dispatch(updateUser({ favoriteTeamsIds: updated }));
+            }}
+            style={{ alignSelf: "flex-start", marginBottom: 8 }}
+          />
+        </View>
 
         {apiTeam && (
           <View style={styles.statsSection}>

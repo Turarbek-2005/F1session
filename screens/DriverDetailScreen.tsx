@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
   Pressable,
 } from "react-native";
-import { useAppSelector } from "./hooks";
+import { useAppSelector, useAppDispatch } from "./hooks";
 import { selectAllDrivers } from "./driversSlice";
 import { selectAllTeams } from "./teamsSlice";
 import { f1ApiService } from "./f1ApiService";
@@ -21,11 +21,14 @@ import {
   Surface,
 } from "@react-native-material/core";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { updateUser } from "./authSlice";
 
 const DriverDetailScreen = ({ route, navigation }: any) => {
   const { driverId } = route.params;
   const drivers = useAppSelector(selectAllDrivers);
   const teams = useAppSelector(selectAllTeams);
+  const dispatch = useAppDispatch();
+  const user = useAppSelector((state) => state.auth.user);
   const [driverDetails, setDriverDetails] =
     useState<DriverDetailsResponse | null>(null);
   const [loading, setLoading] = useState(true);
@@ -129,6 +132,20 @@ const DriverDetailScreen = ({ route, navigation }: any) => {
             </View>
           </View>
         </Surface>
+
+        <View style={{ paddingHorizontal: 16, marginTop: 8 }}>
+          <Button
+            title={(user?.favoriteDriversIds?.includes(String(driver.id)) || user?.favoriteDriversIds?.includes(driver.driverId)) ? "Remove favorite" : "Add favorite"}
+            color={(user?.favoriteDriversIds?.includes(String(driver.id)) || user?.favoriteDriversIds?.includes(driver.driverId)) ? "#999" : "#e10600"}
+            onPress={() => {
+              const current = user?.favoriteDriversIds || [];
+              const isFav = current.includes(driver.driverId) || current.includes(String(driver.id));
+              const updated = isFav ? current.filter((id) => id !== driver.driverId && id !== String(driver.id)) : [...current, driver.driverId];
+              dispatch(updateUser({ favoriteDriversIds: updated }));
+            }}
+            style={{ alignSelf: "flex-start", marginBottom: 8 }}
+          />
+        </View>
 
         {/* Stats section */}
         {driverDetails && (

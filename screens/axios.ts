@@ -2,7 +2,7 @@ import axios from "axios";
 import { Platform } from "react-native";
 
 // LAN IP твоего ПК
-const LAN_IP = "172.20.10.2";
+const LAN_IP = "192.168.228.68";
 const PORT = "4200";
 
 function getBaseUrl() {

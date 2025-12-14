@@ -130,6 +130,70 @@ export const updateUser = createAsyncThunk<
   }
 });
 
+export const addFavoriteDriver = createAsyncThunk<
+  { user: UserInfo },
+  string,
+  { state: { auth: AuthState }, rejectValue: string }
+>('auth/addFavoriteDriver', async (driverId, { getState, dispatch }) => {
+  const { user } = getState().auth;
+  if (!user) {
+    throw new Error("Not logged in");
+  }
+  const updatedFavoriteDrivers = [...(user.favoriteDriversIds || []), driverId];
+  
+  dispatch(updateUser({ favoriteDriversIds: updatedFavoriteDrivers }));
+  
+  return {} as { user: UserInfo};
+});
+
+export const removeFavoriteDriver = createAsyncThunk<
+  { user: UserInfo },
+  string,
+  { state: { auth: AuthState }, rejectValue: string }
+>('auth/removeFavoriteDriver', async (driverId, { getState, dispatch }) => {
+  const { user } = getState().auth;
+  if (!user) {
+    throw new Error("Not logged in");
+  }
+  const updatedFavoriteDrivers = (user.favoriteDriversIds || []).filter(id => id !== driverId);
+
+  dispatch(updateUser({ favoriteDriversIds: updatedFavoriteDrivers }));
+
+  return {} as { user: UserInfo};
+});
+
+export const addFavoriteTeam = createAsyncThunk<
+  { user: UserInfo },
+  string,
+  { state: { auth: AuthState }, rejectValue: string }
+>('auth/addFavoriteTeam', async (teamId, { getState, dispatch }) => {
+  const { user } = getState().auth;
+  if (!user) {
+    throw new Error("Not logged in");
+  }
+  const updatedFavoriteTeams = [...(user.favoriteTeamsIds || []), teamId];
+
+  dispatch(updateUser({ favoriteTeamsIds: updatedFavoriteTeams }));
+
+  return {} as { user: UserInfo};
+});
+
+export const removeFavoriteTeam = createAsyncThunk<
+  { user: UserInfo },
+  string,
+  { state: { auth: AuthState }, rejectValue: string }
+>('auth/removeFavoriteTeam', async (teamId, { getState, dispatch }) => {
+  const { user } = getState().auth;
+  if (!user) {
+    throw new Error("Not logged in");
+  }
+  const updatedFavoriteTeams = (user.favoriteTeamsIds || []).filter(id => id !== teamId);
+
+  dispatch(updateUser({ favoriteTeamsIds: updatedFavoriteTeams }));
+
+  return {} as { user: UserInfo};
+});
+
 const initialState: AuthState = {
   token: null,
   user: null,
