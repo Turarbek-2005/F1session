@@ -109,3 +109,12 @@
 {"level":"error","message":" [F1 API] current/next — Request failed with status code 404","timestamp":"2025-12-14T22:33:23.286Z"}
 {"level":"error","message":" [F1 API] current/next — Request failed with status code 404","timestamp":"2025-12-14T22:36:22.709Z"}
 {"level":"error","message":" [F1 API] current/next — Request failed with status code 404","timestamp":"2025-12-14T22:37:49.044Z"}
+{"level":"error","message":" [F1 API] current/next — Request failed with status code 404","timestamp":"2025-12-14T22:43:57.855Z"}
+{"level":"error","message":" [F1 API] current/next — Request failed with status code 404","timestamp":"2025-12-15T04:11:18.217Z"}
+{"level":"error","message":" [F1 API] current/next — Request failed with status code 404","timestamp":"2025-12-15T04:17:58.207Z"}
+{"level":"error","message":" [F1 API] 2025/3/sprint/qualy — Request failed with status code 404","timestamp":"2025-12-15T04:18:22.695Z"}
+{"level":"error","message":" [F1 API] current/next — Request failed with status code 404","timestamp":"2025-12-15T04:33:29.517Z"}
+{"level":"error","message":" [F1 API] 2025/2/fp3 — Request failed with status code 404","timestamp":"2025-12-15T04:34:30.988Z"}
+{"level":"error","message":" [F1 API] 2025/2/fp3 — Request failed with status code 404","timestamp":"2025-12-15T04:34:39.276Z"}
+{"level":"error","message":" [F1 API] 2025/23/fp3 — Request failed with status code 404","timestamp":"2025-12-15T04:34:53.353Z"}
+{"level":"error","message":" [F1 API] 2025/23/fp2 — Request failed with status code 404","timestamp":"2025-12-15T04:34:55.402Z"}

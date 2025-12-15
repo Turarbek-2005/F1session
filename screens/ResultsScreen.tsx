@@ -100,7 +100,7 @@ export default function ResultsScreen({ route, navigation }: any) {
         <ActivityIndicator color="#e10600" />
       ) : (
         (() => {
-          const results =
+          const rawResults =
             sessionData?.races?.results ??
             sessionData?.races?.fp1Results ??
             sessionData?.races?.fp2Results ??
@@ -110,7 +110,25 @@ export default function ResultsScreen({ route, navigation }: any) {
             sessionData?.races?.sprintQualyResults ??
             null;
 
-          if (!results || results.length === 0) {
+          const results = (rawResults ?? []).filter((r: any) => {
+            if (!r) return false;
+            return Boolean(
+              r.driver ||
+              r.fp1Id ||
+              r.team ||
+              r.position != null ||
+              r.gridPosition != null ||
+              r.points != null ||
+              r.time != null ||
+              r.retired != null
+            );
+          });
+
+          if ((!rawResults || rawResults.length === 0) || results.length === 0) {
+            // if session data exists but there are no meaningful results -> session didn't take place
+            if (sessionData?.races) {
+              return <Text style={styles.note}>данная сессия не проходила в гонке</Text>;
+            }
             return <Text style={styles.note}>Select round and session to load results</Text>;
           }
 
@@ -127,14 +145,42 @@ export default function ResultsScreen({ route, navigation }: any) {
                   </Text>
                 </Pressable>
                 <Pressable onPress={() => {
-                  const foundTeam = teams.find((t: any) => t.teamId === res.team.teamId);
+                  const foundTeam = teams.find((t: any) => t.teamId === res.team?.teamId);
                   if (foundTeam) navigation.navigate("TeamDetail", { teamId: foundTeam?.id });
                 }}>
                   <Text style={styles.team}>{res.team?.teamName}</Text>
                 </Pressable>
               </View>
-              <Text style={styles.time}>{res.time ?? res.retired ?? "-"}</Text>
-              <Text style={styles.points}>{res.points ?? ""}</Text>
+              {(() => {
+                const isQualy = session === "qualyfying" || session === "sprintQualyfying";
+                let timeDisplay: string | null = null;
+
+                if (isQualy) {
+                  const times: string[] = [];
+                  if (Array.isArray(res.times) && res.times.length) {
+                    times.push(...res.times.filter(Boolean).slice(0, 3));
+                  }
+                  ["q1", "q2", "q3", "q1Time", "q2Time", "q3Time", "time1", "time2", "time3", "bestLap"].forEach((k) => {
+                    if (res[k]) times.push(res[k]);
+                  });
+                  if (times.length) timeDisplay = times.slice(0, 3).join(" / ");
+                } else {
+                  timeDisplay = res.time ?? res.retired ?? null;
+                }
+
+                const hasPoints = res.points != null && res.points !== "";
+
+                if (!timeDisplay && !hasPoints) {
+                  return <Text style={styles.note}>времени или очков нет</Text>;
+                }
+
+                return (
+                  <>
+                    <Text style={styles.time}>{timeDisplay ?? "-"}</Text>
+                    <Text style={styles.points}>{res.points ?? ""}</Text>
+                  </>
+                );
+              })()}
             </View>
           ));
         })()
